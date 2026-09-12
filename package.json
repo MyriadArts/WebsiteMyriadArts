@@ -1,0 +1,32 @@
+{
+  "name": "myriad-arts",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "migrate": "node scripts/migrate-youtube.js",
+    "migrate:rerun": "node scripts/migrate-youtube.js --normalize-only",
+    "add-video": "node scripts/add-video.js",
+    "recategorize": "node scripts/recategorize.js",
+    "media:sync": "node scripts/youtube-sync.js"
+  },
+  "dependencies": {
+    "@react-three/fiber": "^8.17.10",
+    "@studio-freight/react-lenis": "^0.0.47",
+    "aos": "^2.3.4",
+    "framer-motion": "^10.12.15",
+    "lenis": "^1.3.23",
+    "next": "15.5.18",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "three": "^0.184.0"
+  },
+  "devDependencies": {
+    "autoprefixer": "10.4.20",
+    "postcss": "8.4.45",
+    "tailwindcss": "3.4.10"
+  }
+}

@@ -1,0 +1,208 @@
+📄 PRODUCT REQUIREMENTS DOCUMENT (Frontend)
+Product: Calakar / Myriad Arts
+Type: Art Community + Cultural Platform Landing Page
+Tech stack: Nextjs, Tailwind CSS, React Icons, Framer Motion (optional for animations)
+1. 🎯 OBJECTIVE
+
+Build a visually rich landing page that:
+
+Showcases Indian arts (dance, music, performances)
+Positions Calakar as a premium creative community
+Drives:
+Engagement (explore events/workshops)
+Media consumption (YouTube/content)
+Trust (partners + gallery)
+2. 👥 TARGET USERS
+Artists (dancers, musicians)
+Event organizers
+Cultural enthusiasts
+Students (learning arts)
+General audience (content viewers)
+3. 🧭 INFORMATION ARCHITECTURE
+Navbar
+Hero
+Mission
+Categories
+Media Showcase (YouTube)
+Partners
+Gallery
+Footer
+4. 🧩 SECTION-BY-SECTION SPEC
+🔹 4.1 NAVBAR
+Content:
+Logo: "Calakar" or "Myriad Arts"
+Links:
+Home
+About Us
+Services
+Media
+Behavior:
+Transparent (initial)
+On scroll → blurred white/black background
+🔹 4.2 HERO SECTION
+Purpose:
+
+Create emotional + cultural first impression
+
+Content:
+Heading:
+"Myriad Arts"
+Subheading:
+"Where tradition meets expression"
+CTA (optional Phase 2):
+"Explore Arts"
+Background:
+Classical Indian dance image
+🔹 4.3 MISSION SECTION
+Purpose:
+
+Explain brand vision
+
+Layout:
+
+Left stats + Right content
+
+Left Stats (Replace generic numbers):
+"100+"
+Artists
+"50+"
+Events
+"30+"
+Workshops
+Right Content:
+Heading:
+
+"Our Mission"
+
+Body Text:
+
+Under one creative banner, we bring together diverse forms of artistic expression — from classical dance and music to modern performances and digital storytelling.
+
+Calakar is dedicated to nurturing talent, building community, and creating immersive cultural experiences that inspire and connect people.
+
+🔹 4.4 CATEGORY SECTION
+Purpose:
+
+Entry points into platform
+
+Cards (4):
+1. Dance Events
+
+Text:
+
+Experience the elegance and energy of live dance performances across traditions.
+
+2. Workshops
+
+Text:
+
+Learn directly from experts through interactive sessions and guided training.
+
+3. Events
+
+Text:
+
+Discover cultural gatherings, showcases, and artistic celebrations.
+
+4. Music
+
+Text:
+
+Dive into rhythms, melodies, and live musical performances.
+
+🔹 4.5 MEDIA SHOWCASE (YouTube Section)
+Purpose:
+
+Content consumption + brand storytelling
+
+Title:
+
+"Calakar YouTube Channel"
+
+(Highlight "Calakar" in red)
+
+Description:
+
+Watch stories unfold through performances, artist journeys, and behind-the-scenes moments.
+Explore curated content that brings art closer to you.
+
+CTA:
+Button: "Watch Now"
+Background:
+Video/podcast/creator setup visual
+🔹 4.6 PARTNERS SECTION
+Purpose:
+
+Build trust + credibility
+
+Heading:
+
+"Our Partners"
+
+Subtext:
+
+Collaborating with institutions and organizations that support and promote the arts.
+
+Content:
+Logos (scrolling strip)
+🔹 4.7 GALLERY SECTION
+Purpose:
+
+Visual proof of activity + engagement
+
+Heading:
+
+"Gallery of Performances"
+
+Subtext:
+
+Moments captured from our events, workshops, and artistic showcases.
+
+Content:
+Performance images grid
+🔹 4.8 FOOTER
+Content:
+Logo / Name
+Quick Links:
+About
+Events
+Media
+Socials:
+YouTube
+Instagram
+LinkedIn
+5. 🎨 DESIGN SYSTEM
+Colors
+Primary Red: #c1121f
+Secondary Red: #973838
+Black: #000000
+White: #ffffff
+Light Gray: #f5f5f5
+Typography
+Headings: Cormorant Garamond
+Body: Inter
+Visual Style
+Premium + cultural
+Minimal but expressive
+Use:
+subtle overlays
+image dominance
+Avoid:
+clutter
+too many UI elements
+6. ⚙️ FUNCTIONAL REQUIREMENTS
+Fully responsive
+Clean section separation
+Scroll-based navigation
+Reusable components
+7. 🚀 FUTURE EXTENSIONS (Don’t build now)
+User profiles (artists)
+Event booking
+Community posts
+Video platform integration
+AI recommendations
+8. ⚠️ CRITICAL UX RULES
+Text must always be readable over images
+Maintain consistent spacing
+No overcrowding sections
+Strong hierarchy (Hero > Section > Card)
