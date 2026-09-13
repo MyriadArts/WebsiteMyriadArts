@@ -6,21 +6,11 @@ export default function AboutJourney() {
   return (
     <section id="our-story" className="relative w-full py-24 border-b border-white/5 z-10 bg-transparent overflow-hidden">
       {/* Background ambient elements */}
-      <div className="absolute inset-0 pointer-events-none z-0">
-        <div className="absolute top-[10%] left-[-5%] w-[400px] h-[600px] opacity-30 grayscale mix-blend-screen">
-          <Image src="/images/about/about-journey-backdrop.png" alt="bg-element" fill className="object-cover" />
-        </div>
-        <div className="absolute bottom-[-10%] right-[-5%] w-[550px] h-[750px] opacity-25 grayscale mix-blend-screen">
-          <Image src="/images/about/about-journey-backdrop.png" alt="bg-element" fill className="object-cover" />
-        </div>
-      </div>
+    
 
       <div className="max-w-[1440px] mx-auto px-6 lg:px-20 relative z-10 pt-24 pb-16">
         <div className="max-w-4xl mx-auto">
-          {/* Staircase Grid Layout:
-              - "OUR" is positioned above the image, right-aligned so 'R' ends at the right boundary of the image.
-              - "JOURNEY" starts at the height where the image starts and left-aligned where the description starts.
-          */}
+       
           <div className="grid grid-cols-1 lg:grid-cols-[240px_1fr] gap-x-10 lg:gap-x-14 items-start justify-center">
 
             {/* Row 1, Col 1: OUR */}
@@ -50,7 +40,7 @@ export default function AboutJourney() {
               <div className="bg-[#e6e2da] p-3 pb-12 shadow-[0_30px_60px_rgba(0,0,0,0.8)] w-full relative">
                 <div className="relative w-full aspect-[4/5] bg-black overflow-hidden group">
                   <Image
-                    src="/images/about/about-stage-performance.jpg"
+                    src="/images/about/about-our-journey.jpeg"
                     alt="Myriad Origin"
                     fill
                     sizes="(max-width: 1024px) 240px, 300px"

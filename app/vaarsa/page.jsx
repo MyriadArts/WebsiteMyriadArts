@@ -3,6 +3,7 @@ import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence, useInView } from "framer-motion";
+import { Medal, Trophy } from "lucide-react";
 import Footer from "../../components/shared/Footer";
 
 // Animated Counter Hook Component
@@ -575,483 +576,172 @@ export default function VaarsaPage() {
         </div>
       </section>
 
-      {/* 4. TIMELINE SECTION (Same structure as About Us page - Hidden for now as requested) */}
-      <section className="relative w-full py-16 md:py-24 z-20 bg-[#050505] overflow-hidden">
-        <div className="max-w-[1000px] mx-auto px-6 lg:px-20 relative z-10">
-          <div className="text-center mb-16">
-            <h2 className="text-center w-full block font-evelins text-3xl sm:text-4xl md:text-5xl uppercase tracking-wide text-white mt-2 leading-[0.95]">
-              <span className="block text-white -translate-x-4 md:-translate-x-8">Our Journey &</span>
-              <span className="block text-[#c1121f] translate-x-4 md:translate-x-8">Vision</span>
-            </h2>
-          </div>
+{/* 4. EVENT TIMELINE / SCHEDULE */}
+<section className="relative w-full py-16 md:py-24 z-20 bg-[#050505] overflow-hidden">
+  <div className="max-w-[1000px] mx-auto px-6 lg:px-20 relative z-10">
 
-          <div className="space-y-12 relative before:absolute before:inset-0 before:ml-12 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-[2px] before:bg-gradient-to-b before:from-transparent before:via-[#c1121f]/50 before:to-transparent">
-            {[
-              {
-                year: "Origin",
-                title: "The Vaarsa Initiative",
-                desc: "“Vaarsa” is an opportunity for artists to showcase their talent and revive folk and folklore. A platform putting folk art in its truest sense—be it by dance or music—on the global map."
-              },
-              {
-                year: "Talkies",
-                title: "Folk Talkies Channel",
-                desc: "Folk Talkies is the brainchild of a team performing Indian Traditional Art forms for years. Telecasting Indian Folk Performances, Documentaries, and diving deeper into our resourceful Indian culture."
-              },
-              {
-                year: "Vision",
-                title: "Folk is GenNext",
-                desc: "It's time to showcase to the world that folk is ever so “cool” and certainly a GenNext thing to focus on. Because art speaks a story of where it originates and of the people that depict it!"
-              },
-              {
-                year: "Foundation",
-                title: "Myriad Arts Collaboration",
-                desc: "Established by a multidisciplinary artistic group to develop a process-driven fine arts and performing arts venture through creative collaboration across Fine Arts, Performing Arts, and Arts Management."
-              }
-            ].map((item, idx) => (
-              <div key={idx} className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active" data-aos="fade-up">
-                <div className="flex items-center justify-center px-4 h-12 bg-[#c1121f] text-white font-evelins text-lg shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 shadow-[0_0_20px_rgba(193,18,31,0.5)] z-10 relative rounded">
-                  {item.year}
-                </div>
-                <div className="w-[calc(100%-6rem)] md:w-[calc(50%-3rem)] bg-[#030303] border border-white/20 p-6 group-hover:border-[#c1121f] group-hover:-translate-y-2 transition-all duration-500 rounded-xl">
-                  <h3 className="text-center type-heading-md text-white uppercase mb-2">
-                  {item.title.split(' ').length > 1 ? (
-                    <>
-                      <span className="text-white">{item.title.split(' ').slice(0, -1).join(' ')} </span>
-                      <span className="text-[#c1121f]">{item.title.split(' ').slice(-1)[0]}</span>
-                    </>
-                  ) : (
-                    <span className="text-white">{item.title}</span>
-                  )}
-                </h3>
-                  <p className="text-xs md:text-sm text-[#a19e99] leading-relaxed">{item.desc}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+    {/* Section Heading */}
+   <div className="text-center mb-16">
+  <h2 className="text-center w-full block font-evelins text-3xl sm:text-4xl md:text-5xl uppercase tracking-wide text-white mt-2 leading-[0.95]">
+    <span className="text-white">Event </span>
+    <span className="text-[#c1121f]">Schedule</span>
+  </h2>
+</div>
 
+    {/* Timeline */}
+    <div className="space-y-12 relative before:absolute before:inset-0 before:ml-12 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-[2px] before:bg-gradient-to-b before:from-transparent before:via-[#c1121f]/50 before:to-transparent">
 
-
-      {/* 5. PRIZE POOL SECTION */}
-      <section className="py-20 md:py-24 px-6 md:px-12 lg:px-20 max-w-6xl mx-auto relative z-20">
-        {/* Subtle atmospheric glow */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-[#c1121f]/10 blur-[160px] pointer-events-none" />
-
-        {/* Section Header */}
-        <div className="text-center mb-12 relative z-10">
-          <h2 className="type-heading-xl text-white">
-            <span className="text-white">Prize</span> <span className="text-[#c1121f]">Pool</span>
-          </h2>
-        </div>
-
-        {/* 3 Prize Cards Grid with Golden Laurel Medallions */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 relative z-10">
-
-          {/* 1st Prize - Mahā Vijētā */}
-          <motion.div
-            initial={{ opacity: 0, y: 25 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.1 }}
-            transition={{ duration: 0.35, ease: "easeOut" }}
-            whileHover={{ y: -6, transition: { duration: 0.15 } }}
-            className="rounded-2xl border border-[#c1121f]/40 hover:border-[#c1121f]/70 bg-gradient-to-b from-[#180507] via-[#0e0304] to-[#070203] p-6 sm:p-7 flex flex-col justify-between relative overflow-hidden shadow-xl group text-center"
-          >
-            <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#c1121f] to-transparent" />
-
-            <div>
-              {/* Golden Laurel Wreath Medallion */}
-              <div className="flex justify-center mb-3">
-                <svg
-                  viewBox="0 0 200 200"
-                  className="w-28 h-28 sm:w-32 sm:h-32 drop-shadow-[0_8px_20px_rgba(212,175,55,0.3)] transition-transform duration-300 group-hover:scale-105"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <defs>
-                    <linearGradient id="gold1" x1="0%" y1="0%" x2="100%" y2="100%">
-                      <stop offset="0%" stopColor="#FFF2B2" />
-                      <stop offset="25%" stopColor="#E5B245" />
-                      <stop offset="50%" stopColor="#BF8819" />
-                      <stop offset="75%" stopColor="#F9D776" />
-                      <stop offset="100%" stopColor="#A8720F" />
-                    </linearGradient>
-                    <linearGradient id="coin1" x1="15%" y1="15%" x2="85%" y2="85%">
-                      <stop offset="0%" stopColor="#FCE794" />
-                      <stop offset="35%" stopColor="#E4AC3C" />
-                      <stop offset="55%" stopColor="#D29424" />
-                      <stop offset="70%" stopColor="#B37510" />
-                      <stop offset="100%" stopColor="#965D06" />
-                    </linearGradient>
-                    <linearGradient id="leaf1" x1="0%" y1="0%" x2="0%" y2="100%">
-                      <stop offset="0%" stopColor="#FFEAA0" />
-                      <stop offset="40%" stopColor="#E5B245" />
-                      <stop offset="80%" stopColor="#C28D1E" />
-                      <stop offset="100%" stopColor="#966308" />
-                    </linearGradient>
-                    <linearGradient id="ring1" x1="0%" y1="0%" x2="100%" y2="100%">
-                      <stop offset="0%" stopColor="#FFF4BC" />
-                      <stop offset="50%" stopColor="#AA7814" />
-                      <stop offset="100%" stopColor="#FFE082" />
-                    </linearGradient>
-                  </defs>
-
-                  {/* 3 Top Stars */}
-                  <path d="M 100 12 L 102.5 19.5 L 110 19.5 L 104 24 L 106.5 31.5 L 100 27 L 93.5 31.5 L 96 24 L 90 19.5 L 97.5 19.5 Z" fill="url(#gold1)" />
-                  <path d="M 82 17 L 83.8 22.5 L 89.5 22.5 L 85 26 L 86.8 31.5 L 82 28 L 77.2 31.5 L 79 26 L 74.5 22.5 L 80.2 22.5 Z" fill="url(#gold1)" />
-                  <path d="M 118 17 L 119.8 22.5 L 125.5 22.5 L 121 26 L 122.8 31.5 L 118 28 L 113.2 31.5 L 115 26 L 110.5 22.5 L 116.2 22.5 Z" fill="url(#gold1)" />
-
-                  {/* Laurel Wreath Left Side */}
-                  <g fill="url(#leaf1)">
-                    <path d="M 95 178 C 65 174 40 150 32 120 C 28 106 28 92 34 78" stroke="url(#gold1)" strokeWidth="2.5" strokeLinecap="round" fill="none" />
-                    <path d="M 85 177 C 76 182 66 181 60 174 C 64 167 75 168 85 177 Z" />
-                    <path d="M 92 168 C 82 172 73 169 70 160 C 76 156 86 160 92 168 Z" />
-                    <path d="M 72 162 C 60 165 52 159 48 150 C 54 146 64 150 72 162 Z" />
-                    <path d="M 80 151 C 69 152 61 145 60 136 C 68 134 76 141 80 151 Z" />
-                    <path d="M 58 143 C 47 143 40 134 39 123 C 47 122 54 130 58 143 Z" />
-                    <path d="M 68 130 C 57 129 52 119 54 110 C 62 111 67 120 68 130 Z" />
-                    <path d="M 48 120 C 39 116 35 106 37 95 C 45 97 48 107 48 120 Z" />
-                    <path d="M 60 108 C 50 104 48 93 53 84 C 60 88 62 98 60 108 Z" />
-                    <path d="M 44 95 C 37 89 36 78 41 68 C 48 72 48 83 44 95 Z" />
-                    <path d="M 58 84 C 50 78 51 67 59 60 C 64 66 63 76 58 84 Z" />
-                    <path d="M 48 70 C 44 61 47 51 55 43 C 60 50 56 61 48 70 Z" />
-                    <path d="M 62 62 C 57 53 62 43 71 38 C 74 46 69 56 62 62 Z" />
-                    <path d="M 60 48 C 60 38 67 30 76 27 C 78 35 71 43 60 48 Z" />
-                  </g>
-
-                  {/* Laurel Wreath Right Side */}
-                  <g fill="url(#leaf1)">
-                    <path d="M 105 178 C 135 174 160 150 168 120 C 172 106 172 92 166 78" stroke="url(#gold1)" strokeWidth="2.5" strokeLinecap="round" fill="none" />
-                    <path d="M 115 177 C 124 182 134 181 140 174 C 136 167 125 168 115 177 Z" />
-                    <path d="M 108 168 C 118 172 127 169 130 160 C 124 156 114 160 108 168 Z" />
-                    <path d="M 128 162 C 140 165 148 159 152 150 C 146 146 136 150 128 162 Z" />
-                    <path d="M 120 151 C 131 152 139 145 140 136 C 132 134 124 141 120 151 Z" />
-                    <path d="M 142 143 C 153 143 160 134 161 123 C 153 122 146 130 142 143 Z" />
-                    <path d="M 132 130 C 143 129 148 119 146 110 C 138 111 133 120 132 130 Z" />
-                    <path d="M 152 120 C 161 116 165 106 163 95 C 155 97 152 107 152 120 Z" />
-                    <path d="M 140 108 C 150 104 152 93 147 84 C 140 88 138 98 140 108 Z" />
-                    <path d="M 156 95 C 163 89 164 78 159 68 C 152 72 152 83 156 95 Z" />
-                    <path d="M 142 84 C 150 78 149 67 141 60 C 136 66 137 76 142 84 Z" />
-                    <path d="M 152 70 C 156 61 153 51 145 43 C 140 50 144 61 152 70 Z" />
-                    <path d="M 138 62 C 143 53 138 43 129 38 C 126 46 131 56 138 62 Z" />
-                    <path d="M 140 48 C 140 38 133 30 124 27 C 122 35 129 43 140 48 Z" />
-                  </g>
-
-                  {/* Knot & Coin */}
-                  <circle cx="100" cy="178" r="4" fill="url(#gold1)" />
-                  <circle cx="100" cy="104" r="50" fill="url(#ring1)" stroke="#774E05" strokeWidth="1.5" />
-                  <circle cx="100" cy="104" r="45" fill="url(#coin1)" />
-                  <path d="M 68 84 A 45 45 0 0 1 138 72 L 68 116 Z" fill="white" opacity="0.22" />
-
-                  {/* 1st WINNER Text */}
-                  <g fontFamily="'Cinzel', 'Playfair Display', 'Georgia', serif" fill="#120a02">
-                    <text x="91" y="103" textAnchor="middle" fontSize="40" fontWeight="700">1</text>
-                    <text x="109" y="86" textAnchor="middle" fontSize="15" fontWeight="600">st</text>
-                    <text x="100" y="132" textAnchor="middle" fontFamily="'Cinzel', 'Outfit', 'Inter', sans-serif" fontSize="11" fontWeight="700" letterSpacing="2.5">WINNER</text>
-                  </g>
-                </svg>
-              </div>
-
-              <h3 className="font-evelins text-2xl sm:text-3xl text-white mb-3">
-                Mahā Vijētā
-              </h3>
-
-              <div className="p-3.5 rounded-xl bg-black/40 border border-white/5 mb-5">
-                <div className="font-evelins text-3xl sm:text-4xl text-white">
-                  ₹50,000
-                </div>
-              </div>
-
-              <div className="space-y-2.5 text-xs text-[#f5dbd8]/90 border-t border-white/10 pt-4 text-left">
-                <div className="flex items-center gap-2">
-                  <span className="text-[#c1121f] text-base leading-none">•</span>
-                  <span>Gold Trophy & National Title</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <span className="text-[#c1121f] text-base leading-none">•</span>
-                  <span>Folk Talkies Masterclass Feature</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <span className="text-[#c1121f] text-base leading-none">•</span>
-                  <span>Vaarsa Gala Headline Showcase</span>
-                </div>
-              </div>
-            </div>
-          </motion.div>
-
-          {/* 2nd Prize - Utkarsh Puraskār */}
-          <motion.div
-            initial={{ opacity: 0, y: 25 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.1 }}
-            transition={{ duration: 0.35, delay: 0.06, ease: "easeOut" }}
-            whileHover={{ y: -6, transition: { duration: 0.15 } }}
-            className="rounded-2xl border border-white/10 hover:border-white/25 bg-gradient-to-b from-[#141414] via-[#0d0d0d] to-[#070707] p-6 sm:p-7 flex flex-col justify-between relative overflow-hidden shadow-xl group text-center"
-          >
-            <div>
-              {/* Golden Laurel Wreath Medallion (2nd Winner) */}
-              <div className="flex justify-center mb-3">
-                <svg
-                  viewBox="0 0 200 200"
-                  className="w-28 h-28 sm:w-32 sm:h-32 drop-shadow-[0_8px_20px_rgba(212,175,55,0.25)] transition-transform duration-300 group-hover:scale-105"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <defs>
-                    <linearGradient id="gold2" x1="0%" y1="0%" x2="100%" y2="100%">
-                      <stop offset="0%" stopColor="#FFF2B2" />
-                      <stop offset="25%" stopColor="#E5B245" />
-                      <stop offset="50%" stopColor="#BF8819" />
-                      <stop offset="75%" stopColor="#F9D776" />
-                      <stop offset="100%" stopColor="#A8720F" />
-                    </linearGradient>
-                    <linearGradient id="coin2" x1="15%" y1="15%" x2="85%" y2="85%">
-                      <stop offset="0%" stopColor="#FCE794" />
-                      <stop offset="35%" stopColor="#E4AC3C" />
-                      <stop offset="55%" stopColor="#D29424" />
-                      <stop offset="70%" stopColor="#B37510" />
-                      <stop offset="100%" stopColor="#965D06" />
-                    </linearGradient>
-                    <linearGradient id="leaf2" x1="0%" y1="0%" x2="0%" y2="100%">
-                      <stop offset="0%" stopColor="#FFEAA0" />
-                      <stop offset="40%" stopColor="#E5B245" />
-                      <stop offset="80%" stopColor="#C28D1E" />
-                      <stop offset="100%" stopColor="#966308" />
-                    </linearGradient>
-                    <linearGradient id="ring2" x1="0%" y1="0%" x2="100%" y2="100%">
-                      <stop offset="0%" stopColor="#FFF4BC" />
-                      <stop offset="50%" stopColor="#AA7814" />
-                      <stop offset="100%" stopColor="#FFE082" />
-                    </linearGradient>
-                  </defs>
-
-                  {/* 3 Top Stars */}
-                  <path d="M 100 12 L 102.5 19.5 L 110 19.5 L 104 24 L 106.5 31.5 L 100 27 L 93.5 31.5 L 96 24 L 90 19.5 L 97.5 19.5 Z" fill="url(#gold2)" />
-                  <path d="M 82 17 L 83.8 22.5 L 89.5 22.5 L 85 26 L 86.8 31.5 L 82 28 L 77.2 31.5 L 79 26 L 74.5 22.5 L 80.2 22.5 Z" fill="url(#gold2)" />
-                  <path d="M 118 17 L 119.8 22.5 L 125.5 22.5 L 121 26 L 122.8 31.5 L 118 28 L 113.2 31.5 L 115 26 L 110.5 22.5 L 116.2 22.5 Z" fill="url(#gold2)" />
-
-                  {/* Laurel Wreath Left Side */}
-                  <g fill="url(#leaf2)">
-                    <path d="M 95 178 C 65 174 40 150 32 120 C 28 106 28 92 34 78" stroke="url(#gold2)" strokeWidth="2.5" strokeLinecap="round" fill="none" />
-                    <path d="M 85 177 C 76 182 66 181 60 174 C 64 167 75 168 85 177 Z" />
-                    <path d="M 92 168 C 82 172 73 169 70 160 C 76 156 86 160 92 168 Z" />
-                    <path d="M 72 162 C 60 165 52 159 48 150 C 54 146 64 150 72 162 Z" />
-                    <path d="M 80 151 C 69 152 61 145 60 136 C 68 134 76 141 80 151 Z" />
-                    <path d="M 58 143 C 47 143 40 134 39 123 C 47 122 54 130 58 143 Z" />
-                    <path d="M 68 130 C 57 129 52 119 54 110 C 62 111 67 120 68 130 Z" />
-                    <path d="M 48 120 C 39 116 35 106 37 95 C 45 97 48 107 48 120 Z" />
-                    <path d="M 60 108 C 50 104 48 93 53 84 C 60 88 62 98 60 108 Z" />
-                    <path d="M 44 95 C 37 89 36 78 41 68 C 48 72 48 83 44 95 Z" />
-                    <path d="M 58 84 C 50 78 51 67 59 60 C 64 66 63 76 58 84 Z" />
-                    <path d="M 48 70 C 44 61 47 51 55 43 C 60 50 56 61 48 70 Z" />
-                    <path d="M 62 62 C 57 53 62 43 71 38 C 74 46 69 56 62 62 Z" />
-                    <path d="M 60 48 C 60 38 67 30 76 27 C 78 35 71 43 60 48 Z" />
-                  </g>
-
-                  {/* Laurel Wreath Right Side */}
-                  <g fill="url(#leaf2)">
-                    <path d="M 105 178 C 135 174 160 150 168 120 C 172 106 172 92 166 78" stroke="url(#gold2)" strokeWidth="2.5" strokeLinecap="round" fill="none" />
-                    <path d="M 115 177 C 124 182 134 181 140 174 C 136 167 125 168 115 177 Z" />
-                    <path d="M 108 168 C 118 172 127 169 130 160 C 124 156 114 160 108 168 Z" />
-                    <path d="M 128 162 C 140 165 148 159 152 150 C 146 146 136 150 128 162 Z" />
-                    <path d="M 120 151 C 131 152 139 145 140 136 C 132 134 124 141 120 151 Z" />
-                    <path d="M 142 143 C 153 143 160 134 161 123 C 153 122 146 130 142 143 Z" />
-                    <path d="M 132 130 C 143 129 148 119 146 110 C 138 111 133 120 132 130 Z" />
-                    <path d="M 152 120 C 161 116 165 106 163 95 C 155 97 152 107 152 120 Z" />
-                    <path d="M 140 108 C 150 104 152 93 147 84 C 140 88 138 98 140 108 Z" />
-                    <path d="M 156 95 C 163 89 164 78 159 68 C 152 72 152 83 156 95 Z" />
-                    <path d="M 142 84 C 150 78 149 67 141 60 C 136 66 137 76 142 84 Z" />
-                    <path d="M 152 70 C 156 61 153 51 145 43 C 140 50 144 61 152 70 Z" />
-                    <path d="M 138 62 C 143 53 138 43 129 38 C 126 46 131 56 138 62 Z" />
-                    <path d="M 140 48 C 140 38 133 30 124 27 C 122 35 129 43 140 48 Z" />
-                  </g>
-
-                  {/* Knot & Coin */}
-                  <circle cx="100" cy="178" r="4" fill="url(#gold2)" />
-                  <circle cx="100" cy="104" r="50" fill="url(#ring2)" stroke="#774E05" strokeWidth="1.5" />
-                  <circle cx="100" cy="104" r="45" fill="url(#coin2)" />
-                  <path d="M 68 84 A 45 45 0 0 1 138 72 L 68 116 Z" fill="white" opacity="0.22" />
-
-                  {/* 2nd WINNER Text */}
-                  <g fontFamily="'Cinzel', 'Playfair Display', 'Georgia', serif" fill="#120a02">
-                    <text x="89" y="103" textAnchor="middle" fontSize="40" fontWeight="700">2</text>
-                    <text x="109" y="86" textAnchor="middle" fontSize="15" fontWeight="600">nd</text>
-                    <text x="100" y="132" textAnchor="middle" fontFamily="'Cinzel', 'Outfit', 'Inter', sans-serif" fontSize="11" fontWeight="700" letterSpacing="2.5">WINNER</text>
-                  </g>
-                </svg>
-              </div>
-
-              <h3 className="font-evelins text-2xl sm:text-3xl text-white mb-3 group-hover:text-[#f5dbd8] transition-colors">
-                Utkarsh Puraskār
-              </h3>
-
-              <div className="p-3.5 rounded-xl bg-black/40 border border-white/5 mb-5">
-                <div className="font-evelins text-3xl sm:text-4xl text-white">
-                  ₹30,000
-                </div>
-              </div>
-
-              <div className="space-y-2.5 text-xs text-[#e9bcb6]/85 border-t border-white/10 pt-4 text-left">
-                <div className="flex items-center gap-2">
-                  <span className="text-[#c1121f] text-base leading-none">•</span>
-                  <span>Silver Trophy & Plaque</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <span className="text-[#c1121f] text-base leading-none">•</span>
-                  <span>Studio Recorded Spotlight</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <span className="text-[#c1121f] text-base leading-none">•</span>
-                  <span>Masterclass Mentorship</span>
-                </div>
-              </div>
-            </div>
-          </motion.div>
-
-          {/* 3rd Prize - Pratibhā Puraskār */}
-          <motion.div
-            initial={{ opacity: 0, y: 25 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.1 }}
-            transition={{ duration: 0.35, delay: 0.12, ease: "easeOut" }}
-            whileHover={{ y: -6, transition: { duration: 0.15 } }}
-            className="rounded-2xl border border-white/10 hover:border-white/25 bg-gradient-to-b from-[#141414] via-[#0d0d0d] to-[#070707] p-6 sm:p-7 flex flex-col justify-between relative overflow-hidden shadow-xl group text-center"
-          >
-            <div>
-              {/* Golden Laurel Wreath Medallion (3rd Winner) */}
-              <div className="flex justify-center mb-3">
-                <svg
-                  viewBox="0 0 200 200"
-                  className="w-28 h-28 sm:w-32 sm:h-32 drop-shadow-[0_8px_20px_rgba(212,175,55,0.25)] transition-transform duration-300 group-hover:scale-105"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <defs>
-                    <linearGradient id="gold3" x1="0%" y1="0%" x2="100%" y2="100%">
-                      <stop offset="0%" stopColor="#FFF2B2" />
-                      <stop offset="25%" stopColor="#E5B245" />
-                      <stop offset="50%" stopColor="#BF8819" />
-                      <stop offset="75%" stopColor="#F9D776" />
-                      <stop offset="100%" stopColor="#A8720F" />
-                    </linearGradient>
-                    <linearGradient id="coin3" x1="15%" y1="15%" x2="85%" y2="85%">
-                      <stop offset="0%" stopColor="#FCE794" />
-                      <stop offset="35%" stopColor="#E4AC3C" />
-                      <stop offset="55%" stopColor="#D29424" />
-                      <stop offset="70%" stopColor="#B37510" />
-                      <stop offset="100%" stopColor="#965D06" />
-                    </linearGradient>
-                    <linearGradient id="leaf3" x1="0%" y1="0%" x2="0%" y2="100%">
-                      <stop offset="0%" stopColor="#FFEAA0" />
-                      <stop offset="40%" stopColor="#E5B245" />
-                      <stop offset="80%" stopColor="#C28D1E" />
-                      <stop offset="100%" stopColor="#966308" />
-                    </linearGradient>
-                    <linearGradient id="ring3" x1="0%" y1="0%" x2="100%" y2="100%">
-                      <stop offset="0%" stopColor="#FFF4BC" />
-                      <stop offset="50%" stopColor="#AA7814" />
-                      <stop offset="100%" stopColor="#FFE082" />
-                    </linearGradient>
-                  </defs>
-
-                  {/* 3 Top Stars */}
-                  <path d="M 100 12 L 102.5 19.5 L 110 19.5 L 104 24 L 106.5 31.5 L 100 27 L 93.5 31.5 L 96 24 L 90 19.5 L 97.5 19.5 Z" fill="url(#gold3)" />
-                  <path d="M 82 17 L 83.8 22.5 L 89.5 22.5 L 85 26 L 86.8 31.5 L 82 28 L 77.2 31.5 L 79 26 L 74.5 22.5 L 80.2 22.5 Z" fill="url(#gold3)" />
-                  <path d="M 118 17 L 119.8 22.5 L 125.5 22.5 L 121 26 L 122.8 31.5 L 118 28 L 113.2 31.5 L 115 26 L 110.5 22.5 L 116.2 22.5 Z" fill="url(#gold3)" />
-
-                  {/* Laurel Wreath Left Side */}
-                  <g fill="url(#leaf3)">
-                    <path d="M 95 178 C 65 174 40 150 32 120 C 28 106 28 92 34 78" stroke="url(#gold3)" strokeWidth="2.5" strokeLinecap="round" fill="none" />
-                    <path d="M 85 177 C 76 182 66 181 60 174 C 64 167 75 168 85 177 Z" />
-                    <path d="M 92 168 C 82 172 73 169 70 160 C 76 156 86 160 92 168 Z" />
-                    <path d="M 72 162 C 60 165 52 159 48 150 C 54 146 64 150 72 162 Z" />
-                    <path d="M 80 151 C 69 152 61 145 60 136 C 68 134 76 141 80 151 Z" />
-                    <path d="M 58 143 C 47 143 40 134 39 123 C 47 122 54 130 58 143 Z" />
-                    <path d="M 68 130 C 57 129 52 119 54 110 C 62 111 67 120 68 130 Z" />
-                    <path d="M 48 120 C 39 116 35 106 37 95 C 45 97 48 107 48 120 Z" />
-                    <path d="M 60 108 C 50 104 48 93 53 84 C 60 88 62 98 60 108 Z" />
-                    <path d="M 44 95 C 37 89 36 78 41 68 C 48 72 48 83 44 95 Z" />
-                    <path d="M 58 84 C 50 78 51 67 59 60 C 64 66 63 76 58 84 Z" />
-                    <path d="M 48 70 C 44 61 47 51 55 43 C 60 50 56 61 48 70 Z" />
-                    <path d="M 62 62 C 57 53 62 43 71 38 C 74 46 69 56 62 62 Z" />
-                    <path d="M 60 48 C 60 38 67 30 76 27 C 78 35 71 43 60 48 Z" />
-                  </g>
-
-                  {/* Laurel Wreath Right Side */}
-                  <g fill="url(#leaf3)">
-                    <path d="M 105 178 C 135 174 160 150 168 120 C 172 106 172 92 166 78" stroke="url(#gold3)" strokeWidth="2.5" strokeLinecap="round" fill="none" />
-                    <path d="M 115 177 C 124 182 134 181 140 174 C 136 167 125 168 115 177 Z" />
-                    <path d="M 108 168 C 118 172 127 169 130 160 C 124 156 114 160 108 168 Z" />
-                    <path d="M 128 162 C 140 165 148 159 152 150 C 146 146 136 150 128 162 Z" />
-                    <path d="M 120 151 C 131 152 139 145 140 136 C 132 134 124 141 120 151 Z" />
-                    <path d="M 142 143 C 153 143 160 134 161 123 C 153 122 146 130 142 143 Z" />
-                    <path d="M 132 130 C 143 129 148 119 146 110 C 138 111 133 120 132 130 Z" />
-                    <path d="M 152 120 C 161 116 165 106 163 95 C 155 97 152 107 152 120 Z" />
-                    <path d="M 140 108 C 150 104 152 93 147 84 C 140 88 138 98 140 108 Z" />
-                    <path d="M 156 95 C 163 89 164 78 159 68 C 152 72 152 83 156 95 Z" />
-                    <path d="M 142 84 C 150 78 149 67 141 60 C 136 66 137 76 142 84 Z" />
-                    <path d="M 152 70 C 156 61 153 51 145 43 C 140 50 144 61 152 70 Z" />
-                    <path d="M 138 62 C 143 53 138 43 129 38 C 126 46 131 56 138 62 Z" />
-                    <path d="M 140 48 C 140 38 133 30 124 27 C 122 35 129 43 140 48 Z" />
-                  </g>
-
-                  {/* Knot & Coin */}
-                  <circle cx="100" cy="178" r="4" fill="url(#gold3)" />
-                  <circle cx="100" cy="104" r="50" fill="url(#ring3)" stroke="#774E05" strokeWidth="1.5" />
-                  <circle cx="100" cy="104" r="45" fill="url(#coin3)" />
-                  <path d="M 68 84 A 45 45 0 0 1 138 72 L 68 116 Z" fill="white" opacity="0.22" />
-
-                  {/* 3rd WINNER Text */}
-                  <g fontFamily="'Cinzel', 'Playfair Display', 'Georgia', serif" fill="#120a02">
-                    <text x="89" y="103" textAnchor="middle" fontSize="40" fontWeight="700">3</text>
-                    <text x="109" y="86" textAnchor="middle" fontSize="15" fontWeight="600">rd</text>
-                    <text x="100" y="132" textAnchor="middle" fontFamily="'Cinzel', 'Outfit', 'Inter', sans-serif" fontSize="11" fontWeight="700" letterSpacing="2.5">WINNER</text>
-                  </g>
-                </svg>
-              </div>
-
-              <h3 className="font-evelins text-2xl sm:text-3xl text-white mb-3 group-hover:text-[#f5dbd8] transition-colors">
-                Pratibhā Puraskār
-              </h3>
-
-              <div className="p-3.5 rounded-xl bg-black/40 border border-white/5 mb-5">
-                <div className="font-evelins text-3xl sm:text-4xl text-white">
-                  ₹20,000
-                </div>
-              </div>
-
-              <div className="space-y-2.5 text-xs text-[#e9bcb6]/85 border-t border-white/10 pt-4 text-left">
-                <div className="flex items-center gap-2">
-                  <span className="text-[#c1121f] text-base leading-none">•</span>
-                  <span>Bronze Trophy & Laurel</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <span className="text-[#c1121f] text-base leading-none">•</span>
-                  <span>Digital Archive Showcase</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <span className="text-[#c1121f] text-base leading-none">•</span>
-                  <span>Certificate of Merit</span>
-                </div>
-              </div>
-            </div>
-          </motion.div>
-        </div>
-
-        {/* Minimal Bottom Citation Note */}
-        <motion.div
-          initial={{ opacity: 0, y: 15 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.25 }}
-          className="mt-8 rounded-xl border border-white/10 bg-white/[0.02] px-5 py-3.5 backdrop-blur-md flex flex-col sm:flex-row items-center justify-between gap-2 text-xs relative z-10 text-center sm:text-left"
+      {[
+        {
+          time: "09:00 AM",
+          title: "Registration & Welcome",
+          desc: "Guest registration, attendee check-in, and welcome refreshments."
+        },
+        {
+          time: "10:00 AM",
+          title: "Opening Ceremony",
+          desc: "The event officially begins with an opening address and introduction to the day's programme."
+        },
+        {
+          time: "11:00 AM",
+          title: "Opening Performance",
+          desc: "A curated live performance setting the tone for the event."
+        },
+        {
+          time: "12:30 PM",
+          title: "Artist Showcase",
+          desc: "Featured artists and performers present their work across traditional and contemporary forms."
+        },
+        {
+          time: "02:00 PM",
+          title: "Lunch & Interaction",
+          desc: "A break for lunch, informal conversations, and interaction with artists and attendees."
+        },
+        {
+          time: "03:30 PM",
+          title: "Main Performance",
+          desc: "The central performance of the event featuring invited artists and performers."
+        },
+        {
+          time: "05:00 PM",
+          title: "Artist Interaction",
+          desc: "An open conversation and interaction session with the participating artists."
+        },
+        {
+          time: "06:00 PM",
+          title: "Closing Ceremony",
+          desc: "Closing remarks, acknowledgements, and the conclusion of the event."
+        }
+      ].map((item, idx) => (
+        <div
+          key={idx}
+          className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group"
+          data-aos="fade-up"
         >
-          <span className="text-white/80">All participants & finalists receive official National Credentials & Citations.</span>
-          <span className="text-[#c1121f] font-mono text-[11px] uppercase tracking-wider font-semibold">Jury Accreditations Included</span>
-        </motion.div>
-      </section>
+
+          {/* Time */}
+          <div className="flex items-center justify-center px-4 h-12 min-w-[110px] bg-[#c1121f] text-white font-evelins text-base md:text-lg shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 shadow-[0_0_20px_rgba(193,18,31,0.5)] z-10 relative rounded">
+            {item.time}
+          </div>
+
+          {/* Event Card */}
+          <div className="w-[calc(100%-7.5rem)] md:w-[calc(50%-3rem)] bg-[#030303] border border-white/20 p-6 group-hover:border-[#c1121f] group-hover:-translate-y-2 transition-all duration-500 rounded-xl">
+
+            <h3 className="text-center type-heading-md text-white uppercase mb-2">
+              {item.title.split(" ").length > 1 ? (
+                <>
+                  <span className="text-white">
+                    {item.title.split(" ").slice(0, -1).join(" ")}{" "}
+                  </span>
+                  <span className="text-[#c1121f]">
+                    {item.title.split(" ").slice(-1)[0]}
+                  </span>
+                </>
+              ) : (
+                <span className="text-white">{item.title}</span>
+              )}
+            </h3>
+
+            <p className="text-xs md:text-sm text-[#a19e99] leading-relaxed text-center">
+              {item.desc}
+            </p>
+
+          </div>
+        </div>
+      ))}
+
+    </div>
+  </div>
+</section>
 
 
+
+     {/* PRIZE POOL */}
+<section className="py-20 px-6 md:px-12 lg:px-20 max-w-6xl mx-auto">
+  <div className="text-center mb-12">
+    <h2 className="type-heading-xl text-white">
+      Prize <span className="text-[#c1121f]">Pool</span>
+    </h2>
+  </div>
+
+  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+    {[
+      {
+        place: "1st",
+        title: "Mahā Vijētā",
+        prize: "₹50,000",
+        icon: Trophy,
+        accent: "#c1121f",
+      },
+      {
+        place: "2nd",
+        title: "Utkarsh Puraskār",
+        prize: "₹30,000",
+        icon: Medal,
+        accent: "#d6b36a",
+      },
+      {
+        place: "3rd",
+        title: "Pratibhā Puraskār",
+        prize: "₹20,000",
+        icon: Medal,
+        accent: "#b87962",
+      },
+    ].map((item) => (
+      <div
+        key={item.place}
+        className="group relative overflow-hidden rounded-2xl border border-white/10 bg-[#0b0b0b] p-7 text-center transition-all duration-300 hover:-translate-y-1 hover:border-white/25"
+      >
+        <div
+          className="absolute inset-x-0 top-0 h-px opacity-70 transition-opacity group-hover:opacity-100"
+          style={{ backgroundColor: item.accent }}
+        />
+
+        <div
+          className="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-full border bg-white/[0.03]"
+          style={{ borderColor: `${item.accent}66`, color: item.accent }}
+        >
+          <item.icon size={32} strokeWidth={1.5} aria-hidden="true" />
+        </div>
+
+        <p
+          className="mb-2 text-sm uppercase tracking-widest"
+          style={{ color: item.accent }}
+        >
+          {item.place} Prize
+        </p>
+
+        <h3 className="font-evelins text-2xl text-white mb-4">
+          {item.title}
+        </h3>
+
+        <div className="text-3xl font-evelins" style={{ color: item.accent }}>
+          {item.prize}
+        </div>
+      </div>
+    ))}
+  </div>
+</section>
 
       {/* 7. GET INVOLVED SECTION (Refined Compact Cards) */}
       <section className="py-16 md:py-24 px-6 md:px-12 lg:px-20 max-w-6xl mx-auto relative z-20">

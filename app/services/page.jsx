@@ -95,7 +95,7 @@ const sections = [
     title: "Performances",
     icon: "theater_comedy",
     description: "Experience the profound depth of Indian classical dance and drama in its purest form.",
-    image: "/images/services/services-performance-cover.jpg"
+    image: "/images/services/services-performance-section.jpg"
   },
   {
     id: "workshops",
@@ -116,7 +116,7 @@ const sections = [
     title: "Music",
     icon: "music_note",
     description: "Aural journeys exploring the rhythmic complexities of classical Indian compositions and cinematic soundscapes.",
-    image: "/images/services/services-music-performance.jpg"
+    image: "/images/services/services-music.jpg"
   }
 ];
 
@@ -309,11 +309,7 @@ export default function ServicesPage() {
               <h2 className="text-3xl sm:text-4xl md:text-5xl font-evelins text-white font-normal tracking-wide drop-shadow-[0_4px_20px_rgba(0,0,0,0.8)]">
               <span className="text-white">What We</span> <span className="text-[#c1121f]">Offer</span>
             </h2>
-              <div className="flex items-center justify-center gap-3 mt-2 mb-0 w-full max-w-xs mx-auto">
-                <div className="h-[1px] flex-1 bg-gradient-to-r from-transparent via-[#c1121f]/70 to-transparent" />
-                <span className="text-[#c1121f] text-xs font-serif">✦</span>
-                <div className="h-[1px] flex-1 bg-gradient-to-r from-transparent via-[#c1121f]/70 to-transparent" />
-              </div>
+           
             </motion.div>
           )}
         </AnimatePresence>
@@ -624,8 +620,8 @@ export default function ServicesPage() {
                 </Link>
               </div>
               {/*  Decorative Backdrop Image Overlay  */}
-              <div className="absolute inset-0 opacity-10 pointer-events-none">
-                <img alt="Theatrical background" className="w-full h-full object-cover grayscale" src="/images/services/services-journey-backdrop.png" />
+              <div className="absolute inset-0 opacity-30 pointer-events-none">
+                <img alt="ready-to-collab" className="w-full h-full object-cover " src="/images/services/ready-to-collab.jpg" />
               </div>
             </section>
             <Footer />

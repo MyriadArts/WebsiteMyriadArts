@@ -41,7 +41,7 @@ export default function AboutPage() {
 
   const ecosystemData = {
     Performance: {
-      image: "/images/about/about-gallery-01.jpg",
+      image: "/images/about/about-performance-ecosystem.jpg",
       title: "Performance Division",
       desc: "The vanguard of our operation. Live, visceral, unrepeatable. We construct environments where the screen disappears and raw emotion takes over.",
       list: ["Cinematic Stage Productions", "Immersive Underground Sets", "Global Broadcast Events", "Cross-disciplinary Raves"]
@@ -190,14 +190,7 @@ export default function AboutPage() {
       <section id="our-story" className="relative w-full py-16 md:py-24 border-b border-white/5 z-10 bg-[#050505] overflow-hidden">
         <VaarsaAtmosphericBackground />
         {/* Background ambient elements */}
-        <div className="absolute inset-0 pointer-events-none z-0">
-          <div className="absolute top-[10%] left-[-5%] w-[400px] h-[600px] opacity-30 grayscale mix-blend-screen">
-            <Image src="/images/about/about-journey-backdrop.png" alt="bg-element" fill sizes="400px" className="object-cover" />
-          </div>
-          <div className="absolute bottom-[-10%] right-[-5%] w-[550px] h-[750px] opacity-25 grayscale mix-blend-screen">
-            <Image src="/images/about/about-journey-backdrop.png" alt="bg-element" fill sizes="550px" className="object-cover" />
-          </div>
-        </div>
+       
 
         <div className="max-w-[1440px] mx-auto px-6 lg:px-20 relative z-10 pt-8 md:pt-16 pb-8 md:pb-12">
           <div className="max-w-4xl mx-auto">
@@ -235,11 +228,11 @@ export default function AboutPage() {
                   <div className="relative w-full aspect-[4/5]">
                     <div className="absolute inset-0 transform -scale-x-100 transition-transform duration-700 group-hover:scale-x-[-1.05] group-hover:scale-y-[1.05]">
                       <Image
-                        src="/images/about/about-stage-performance.jpg"
+                        src="/images/about/about-our-journey.jpg"
                         alt="Our Journey"
                         fill
                         sizes="(max-width: 1024px) 240px, 300px"
-                        className="object-cover object-right contrast-125"
+                        className="object-cover"
                       />
                     </div>
                     <div className="absolute inset-0 bg-[#c1121f]/10 mix-blend-overlay opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
@@ -405,7 +398,7 @@ export default function AboutPage() {
               { 
                 name: "Tejashree Sawant", 
                 role: "Project management for Vaarsa - Cofounder Vaarsa", 
-                img: null,
+                img: "/images/team/tejashree-sawant.jpg",
                 facebook: "https://www.facebook.com/tejashree.sawant.77"
               },
               { 
@@ -423,16 +416,16 @@ export default function AboutPage() {
                 linkedin: "https://www.linkedin.com/in/shruti-samant-she-her/"
               },
               { 
-                name: "Pranoti Joshi", 
+                name: "Pranoti Chinmay", 
                 role: "Core Member", 
-                img: null,
+                img: "/images/team/pranoti-chinmay.jpg",
                 instagram: "https://www.instagram.com/dancetraveller_pranoti/",
                 linkedin: "https://www.linkedin.com/in/pranoti-chinmay-07563216/"
               },
               { 
-                name: "Kalvati Panchal", 
+                name: "Kalavati Panchal", 
                 role: "Core member", 
-                img: "/images/team/kalvati-panchal.jpg",
+                img: "/images/team/kalavati-panchal.jpeg",
                 instagram: "https://www.instagram.com/kala_panchal_06/"
               },
               { 

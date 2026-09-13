@@ -13,11 +13,7 @@ export default function OurJourneySection() {
       <div className="max-w-[1440px] mx-auto px-6 lg:px-20 relative z-10">
         <div className="relative max-w-5xl mx-auto bg-black/75 backdrop-blur-md p-8 sm:p-10 md:p-12 rounded-2xl border border-white/10 shadow-[0_25px_60px_rgba(0,0,0,0.85)]">
 
-          {/* Staircase Grid Layout:
-              - Row 1, Col 1: "OUR" above image, right-aligned so 'R' ends at end of image width
-              - Row 2, Col 1: Polaroid Image
-              - Row 2, Col 2: "JOURNEY" + Description text
-          */}
+      
           <div className="grid grid-cols-1 md:grid-cols-[280px_1fr] lg:grid-cols-[320px_1fr] gap-x-10 md:gap-x-14 items-start">
 
             {/* Row 1, Col 1: OUR */}
@@ -47,7 +43,7 @@ export default function OurJourneySection() {
               <div className="bg-[#e6e2da] p-3.5 pb-14 shadow-[0_25px_50px_rgba(0,0,0,0.85)] w-full relative rounded-sm">
                 <div className="relative w-full aspect-[4/5] bg-black overflow-hidden group">
                   <Image
-                    src="/images/media/media-our-journey.jpg"
+                    src="/images/media/media-podcast-journey.jpg"
                     alt="Myriad Origin"
                     fill
                     sizes="(max-width: 1024px) 280px, 320px"

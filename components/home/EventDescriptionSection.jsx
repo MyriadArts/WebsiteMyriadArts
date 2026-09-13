@@ -131,7 +131,7 @@ export default function EventDescriptionSection() {
               transition={{ duration: 1.1, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
             >
               <video
-                src="/videos/vaarsa/vaarsa-showcase.mp4"
+                src="/videos/home/vaarsa-home.mp4"
                 autoPlay
                 loop
                 muted

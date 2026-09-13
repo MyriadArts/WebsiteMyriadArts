@@ -84,6 +84,19 @@ export default function WorkshopService({ detailScrollRef }) {
             </p>
           </motion.div>
         </motion.section>
+
+        <section className="pb-8 text-center">
+          <div className="border-t border-rule-white pt-12 md:pt-16">
+            <p className="font-sans text-xs uppercase tracking-[0.3em] text-primary mb-4">Bring Your Vision To Life</p>
+            <h2 className="font-evelins text-3xl md:text-5xl text-white mb-7">Let&apos;s Create Something Extraordinary</h2>
+            <Link
+              href="/contact"
+              className="inline-flex items-center justify-center rounded-md bg-[#c1121f] px-6 py-3 font-sans text-xs font-bold uppercase tracking-[0.18em] text-white transition-colors hover:bg-[#e01423]"
+            >
+              Collaborate With Us
+            </Link>
+          </div>
+        </section>
       </div>
     </motion.div>
   );

@@ -8,9 +8,7 @@ export default function AboutTeam() {
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80vw] h-[80vw] max-w-[800px] max-h-[800px] bg-[#c1121f] rounded-full blur-[150px] opacity-[0.03] pointer-events-none z-0"></div>
 
       <div className="max-w-[1440px] mx-auto px-6 lg:px-20 text-center relative z-10">
-        <div className="bg-[#c1121f] text-white px-4 py-1 text-[10px] font-bold tracking-[0.3em] uppercase mb-16 inline-block shadow-[0_0_20px_rgba(193,18,31,0.4)]" data-aos="fade-down">
-          THE ARCHITECTS
-        </div>
+       
 
         <h2 className="font-evelins font-normal text-3xl sm:text-4xl md:text-5xl uppercase text-white mb-20 tracking-wide" data-aos="zoom-in">
           Meet Our <span className="text-[#c1121f]">Team</span>
@@ -18,7 +16,7 @@ export default function AboutTeam() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-16">
           {[
-            { name: "Aditya Varma", role: "Founder & Artistic Director", desc: "The mastermind behind the madness. Aditya orchestrates the collision of eras, engineering psychological landscapes.", img: "/images/team/shreyas-desai.jpeg" },
+            { name: "Shreyas Desai", role: "Founder & Artistic Director", desc: "The mastermind behind the madness. Aditya orchestrates the collision of eras, engineering psychological landscapes.", img: "/images/team/shreyas-desai.jpeg" },
             { name: "Shruti Samant", role: "Creative Director", desc: "She doesn't design scenes; she builds environments where the screen disappears and raw emotion takes over.", img: "/images/team/shruti-samant.jpg" },
             { name: "Kalvati Panchal", role: "Production Manager", desc: "The pulse regulator. Ensures the chaos is perfectly contained, weaponized, and delivered without latency.", img: "/images/team/kalvati-panchal.jpg" },
             { name: "Akshata Awlegoankar", role: "Education Lead", desc: "Cultivating the next generation of artistic insurgents. Rewiring the minds and muscles of future architects.", img: "/images/team/akshata-awlegoankar.jpeg" }

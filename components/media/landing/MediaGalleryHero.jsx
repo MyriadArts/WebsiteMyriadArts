@@ -192,7 +192,7 @@ export default function MediaGalleryHero({ videos = [] }) {
                   <div className="w-full h-full relative overflow-hidden bg-[#111] shadow-[0_25px_50px_rgba(0,0,0,0.9)] rounded-xl border border-white/10">
                     <div className="w-full h-full group-hover:scale-105 transition-transform duration-700">
                       <Image
-                        src="/images/media/media-our-journey.jpg"
+                        src="/images/media/media-podcast-journey.jpg"
                         alt="Our Journey"
                         fill
                         sizes="(max-width: 768px) 280px, 320px"
