@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 
 export default function SplashScreen({ onComplete }) {
   const videoRef = useRef(null);
@@ -31,21 +31,31 @@ export default function SplashScreen({ onComplete }) {
   useEffect(() => {
     document.body.style.overflow = "hidden";
 
-    // Attempt direct autoplay on mount
-    if (videoRef.current) {
-      videoRef.current.muted = true;
-      videoRef.current.defaultMuted = true;
-      videoRef.current.play().then(() => {
-        setIsVideoReady(true);
-      }).catch(() => {
-        // Will retry on loadeddata/canplay
-      });
+    const video = videoRef.current;
+    if (video) {
+      video.muted = true;
+      video.defaultMuted = true;
+      const playPromise = video.play();
+      if (playPromise !== undefined) {
+        playPromise
+          .then(() => {
+            setIsVideoReady(true);
+          })
+          .catch(() => {
+            // If primary URL fails, fallback to local video
+            if (typeof window !== "undefined" && !video.src.includes("/videos/splash/splash-intro-faststart.mp4")) {
+              video.src = "/videos/splash/splash-intro-faststart.mp4";
+              video.load();
+              video.play().then(() => setIsVideoReady(true)).catch(() => {});
+            }
+          });
+      }
     }
 
-    // Safety fallback: dismiss smoothly after 5s max if network hangs
+    // Safety fallback: dismiss smoothly after 4.5s max
     fallbackTimerRef.current = setTimeout(() => {
       complete();
-    }, 5000);
+    }, 4500);
 
     return () => {
       if (fallbackTimerRef.current) clearTimeout(fallbackTimerRef.current);
@@ -54,16 +64,24 @@ export default function SplashScreen({ onComplete }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const handleCanPlay = () => {
+  const handleVideoPlaying = () => {
     setIsVideoReady(true);
-    if (videoRef.current && videoRef.current.paused) {
-      videoRef.current.play().catch(() => {});
-    }
   };
 
   const handleTimeUpdate = () => {
     const video = videoRef.current;
-    if (video && video.duration > 0 && video.currentTime >= video.duration - 0.25) {
+    if (video && video.duration > 0 && video.currentTime >= video.duration - 0.2) {
+      complete();
+    }
+  };
+
+  const handleVideoError = () => {
+    const video = videoRef.current;
+    if (video && !video.src.includes("/videos/splash/splash-intro-faststart.mp4")) {
+      video.src = "/videos/splash/splash-intro-faststart.mp4";
+      video.load();
+      video.play().then(() => setIsVideoReady(true)).catch(() => complete());
+    } else {
       complete();
     }
   };
@@ -76,7 +94,7 @@ export default function SplashScreen({ onComplete }) {
       }`}
       initial={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+      transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
     >
       {/* Radial Vignette Backdrop */}
       <div
@@ -86,62 +104,25 @@ export default function SplashScreen({ onComplete }) {
         }}
       />
 
-      {/* Layer 1: Ambient Brand Placeholder / Pulsing Glow while connecting */}
-      <AnimatePresence>
-        {!isVideoReady && (
-          <motion.div
-            className="absolute inset-0 flex flex-col items-center justify-center z-0"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.4 }}
-          >
-            {/* Subtle luxury brand logo glow */}
-            <motion.div
-              animate={{
-                scale: [0.98, 1.02, 0.98],
-                opacity: [0.4, 0.8, 0.4],
-              }}
-              transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
-              className="flex flex-col items-center gap-4"
-            >
-              <div className="w-16 h-16 rounded-full border border-red-600/30 flex items-center justify-center bg-black/40 backdrop-blur-md">
-                <span className="w-2.5 h-2.5 rounded-full bg-red-600 animate-ping" />
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      {/* Layer 2: Cloudflare R2 Video with Local Fallback */}
-      <motion.video
+      {/* High-Performance Direct Video Element */}
+      <video
         ref={videoRef}
+        src="https://media.myriadarts.in/splash/splash-intro.mp4"
         autoPlay
         muted
         playsInline
         preload="auto"
-        onCanPlay={handleCanPlay}
-        onLoadedData={handleCanPlay}
-        onCanPlayThrough={handleCanPlay}
+        onPlay={handleVideoPlaying}
+        onPlaying={handleVideoPlaying}
+        onCanPlay={handleVideoPlaying}
+        onLoadedData={handleVideoPlaying}
         onTimeUpdate={handleTimeUpdate}
         onEnded={complete}
-        className="w-full max-w-4xl rounded-2xl shadow-2xl object-cover pointer-events-none relative z-20"
-        initial={{ opacity: 0, scale: 0.97 }}
-        animate={{
-          opacity: isVideoReady ? 1 : 0,
-          scale: isVideoReady ? 1 : 0.97,
-        }}
-        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-      >
-        <source
-          src="https://pub-de5dfcf82d8f4854a79642f955c48806.r2.dev/splash/splash-intro.mp4"
-          type="video/mp4"
-        />
-        <source
-          src="/videos/splash/splash-intro-faststart.mp4"
-          type="video/mp4"
-        />
-      </motion.video>
+        onError={handleVideoError}
+        className={`w-full max-w-4xl rounded-2xl shadow-2xl object-cover pointer-events-none relative z-20 transition-all duration-500 ease-out ${
+          isVideoReady ? "opacity-100 scale-100" : "opacity-0 scale-95"
+        }`}
+      />
 
       {/* Skip indicator */}
       <div className="absolute bottom-6 right-6 text-white/40 text-[10px] uppercase tracking-widest font-sans pointer-events-none z-30">
