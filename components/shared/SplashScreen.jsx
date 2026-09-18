@@ -19,7 +19,7 @@ export default function SplashScreen({ onComplete }) {
     if (videoRef.current) {
       try {
         videoRef.current.pause();
-      } catch (e) {}
+      } catch (e) { }
     }
 
     onComplete?.();
@@ -59,15 +59,14 @@ export default function SplashScreen({ onComplete }) {
       clearTimeout(fallbackTimerRef.current);
       document.body.style.overflow = "";
     };
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
     <motion.div
       onClick={complete}
-      className={`fixed inset-0 z-[9999] bg-black flex items-center justify-center overflow-hidden cursor-pointer ${
-        isDismissing ? "pointer-events-none" : ""
-      }`}
+      className={`fixed inset-0 z-[9999] bg-black flex items-center justify-center overflow-hidden cursor-pointer ${isDismissing ? "pointer-events-none" : ""
+        }`}
       initial={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
@@ -89,7 +88,7 @@ export default function SplashScreen({ onComplete }) {
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
       >
-        <source src="/videos/splash/splash-intro.mp4" type="video/mp4" />
+        <source src="https://pub-de5dfcf82d8f4854a79642f955c48806.r2.dev/splash/splash-intro.mp4" type="video/mp4" />
       </motion.video>
 
       {/* Skip indicator */}

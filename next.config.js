@@ -13,8 +13,12 @@ const nextConfig = {
         protocol: "https",
         hostname: "i.ytimg.com",
       },
+      {
+        protocol: "https",
+        hostname: "pub-de5dfcf82d8f4854a79642f955c48806.r2.dev",
+      }
     ],
   },
 };
 
-module.exports = nextConfig;
+module.exports = nextConfig;

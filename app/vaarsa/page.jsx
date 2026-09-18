@@ -241,7 +241,7 @@ export default function VaarsaPage() {
             muted
             playsInline
             className="w-full h-full object-cover opacity-65 scale-105"
-            src="/videos/vaarsa/vaarsa-hero-bg.mp4"
+            src="https://pub-de5dfcf82d8f4854a79642f955c48806.r2.dev/vaarsa/vaarsa-hero-bg.mp4"
           />
         </div>
         <div className="absolute inset-0 bg-gradient-to-b from-[#050505]/80 via-[#050505]/45 to-[#050505]" />
@@ -576,172 +576,172 @@ export default function VaarsaPage() {
         </div>
       </section>
 
-{/* 4. EVENT TIMELINE / SCHEDULE */}
-<section className="relative w-full py-16 md:py-24 z-20 bg-[#050505] overflow-hidden">
-  <div className="max-w-[1000px] mx-auto px-6 lg:px-20 relative z-10">
+      {/* 4. EVENT TIMELINE / SCHEDULE */}
+      <section className="relative w-full py-16 md:py-24 z-20 bg-[#050505] overflow-hidden">
+        <div className="max-w-[1000px] mx-auto px-6 lg:px-20 relative z-10">
 
-    {/* Section Heading */}
-   <div className="text-center mb-16">
-  <h2 className="text-center w-full block font-evelins text-3xl sm:text-4xl md:text-5xl uppercase tracking-wide text-white mt-2 leading-[0.95]">
-    <span className="text-white">Event </span>
-    <span className="text-[#c1121f]">Schedule</span>
-  </h2>
-</div>
-
-    {/* Timeline */}
-    <div className="space-y-12 relative before:absolute before:inset-0 before:ml-12 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-[2px] before:bg-gradient-to-b before:from-transparent before:via-[#c1121f]/50 before:to-transparent">
-
-      {[
-        {
-          time: "09:00 AM",
-          title: "Registration & Welcome",
-          desc: "Guest registration, attendee check-in, and welcome refreshments."
-        },
-        {
-          time: "10:00 AM",
-          title: "Opening Ceremony",
-          desc: "The event officially begins with an opening address and introduction to the day's programme."
-        },
-        {
-          time: "11:00 AM",
-          title: "Opening Performance",
-          desc: "A curated live performance setting the tone for the event."
-        },
-        {
-          time: "12:30 PM",
-          title: "Artist Showcase",
-          desc: "Featured artists and performers present their work across traditional and contemporary forms."
-        },
-        {
-          time: "02:00 PM",
-          title: "Lunch & Interaction",
-          desc: "A break for lunch, informal conversations, and interaction with artists and attendees."
-        },
-        {
-          time: "03:30 PM",
-          title: "Main Performance",
-          desc: "The central performance of the event featuring invited artists and performers."
-        },
-        {
-          time: "05:00 PM",
-          title: "Artist Interaction",
-          desc: "An open conversation and interaction session with the participating artists."
-        },
-        {
-          time: "06:00 PM",
-          title: "Closing Ceremony",
-          desc: "Closing remarks, acknowledgements, and the conclusion of the event."
-        }
-      ].map((item, idx) => (
-        <div
-          key={idx}
-          className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group"
-          data-aos="fade-up"
-        >
-
-          {/* Time */}
-          <div className="flex items-center justify-center px-4 h-12 min-w-[110px] bg-[#c1121f] text-white font-evelins text-base md:text-lg shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 shadow-[0_0_20px_rgba(193,18,31,0.5)] z-10 relative rounded">
-            {item.time}
+          {/* Section Heading */}
+          <div className="text-center mb-16">
+            <h2 className="text-center w-full block font-evelins text-3xl sm:text-4xl md:text-5xl uppercase tracking-wide text-white mt-2 leading-[0.95]">
+              <span className="text-white">Event </span>
+              <span className="text-[#c1121f]">Schedule</span>
+            </h2>
           </div>
 
-          {/* Event Card */}
-          <div className="w-[calc(100%-7.5rem)] md:w-[calc(50%-3rem)] bg-[#030303] border border-white/20 p-6 group-hover:border-[#c1121f] group-hover:-translate-y-2 transition-all duration-500 rounded-xl">
+          {/* Timeline */}
+          <div className="space-y-12 relative before:absolute before:inset-0 before:ml-12 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-[2px] before:bg-gradient-to-b before:from-transparent before:via-[#c1121f]/50 before:to-transparent">
 
-            <h3 className="text-center type-heading-md text-white uppercase mb-2">
-              {item.title.split(" ").length > 1 ? (
-                <>
-                  <span className="text-white">
-                    {item.title.split(" ").slice(0, -1).join(" ")}{" "}
-                  </span>
-                  <span className="text-[#c1121f]">
-                    {item.title.split(" ").slice(-1)[0]}
-                  </span>
-                </>
-              ) : (
-                <span className="text-white">{item.title}</span>
-              )}
-            </h3>
+            {[
+              {
+                time: "09:00 AM",
+                title: "Registration & Welcome",
+                desc: "Guest registration, attendee check-in, and welcome refreshments."
+              },
+              {
+                time: "10:00 AM",
+                title: "Opening Ceremony",
+                desc: "The event officially begins with an opening address and introduction to the day's programme."
+              },
+              {
+                time: "11:00 AM",
+                title: "Opening Performance",
+                desc: "A curated live performance setting the tone for the event."
+              },
+              {
+                time: "12:30 PM",
+                title: "Artist Showcase",
+                desc: "Featured artists and performers present their work across traditional and contemporary forms."
+              },
+              {
+                time: "02:00 PM",
+                title: "Lunch & Interaction",
+                desc: "A break for lunch, informal conversations, and interaction with artists and attendees."
+              },
+              {
+                time: "03:30 PM",
+                title: "Main Performance",
+                desc: "The central performance of the event featuring invited artists and performers."
+              },
+              {
+                time: "05:00 PM",
+                title: "Artist Interaction",
+                desc: "An open conversation and interaction session with the participating artists."
+              },
+              {
+                time: "06:00 PM",
+                title: "Closing Ceremony",
+                desc: "Closing remarks, acknowledgements, and the conclusion of the event."
+              }
+            ].map((item, idx) => (
+              <div
+                key={idx}
+                className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group"
+                data-aos="fade-up"
+              >
 
-            <p className="text-xs md:text-sm text-[#a19e99] leading-relaxed text-center">
-              {item.desc}
-            </p>
+                {/* Time */}
+                <div className="flex items-center justify-center px-4 h-12 min-w-[110px] bg-[#c1121f] text-white font-evelins text-base md:text-lg shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 shadow-[0_0_20px_rgba(193,18,31,0.5)] z-10 relative rounded">
+                  {item.time}
+                </div>
+
+                {/* Event Card */}
+                <div className="w-[calc(100%-7.5rem)] md:w-[calc(50%-3rem)] bg-[#030303] border border-white/20 p-6 group-hover:border-[#c1121f] group-hover:-translate-y-2 transition-all duration-500 rounded-xl">
+
+                  <h3 className="text-center type-heading-md text-white uppercase mb-2">
+                    {item.title.split(" ").length > 1 ? (
+                      <>
+                        <span className="text-white">
+                          {item.title.split(" ").slice(0, -1).join(" ")}{" "}
+                        </span>
+                        <span className="text-[#c1121f]">
+                          {item.title.split(" ").slice(-1)[0]}
+                        </span>
+                      </>
+                    ) : (
+                      <span className="text-white">{item.title}</span>
+                    )}
+                  </h3>
+
+                  <p className="text-xs md:text-sm text-[#a19e99] leading-relaxed text-center">
+                    {item.desc}
+                  </p>
+
+                </div>
+              </div>
+            ))}
 
           </div>
         </div>
-      ))}
-
-    </div>
-  </div>
-</section>
+      </section>
 
 
 
-     {/* PRIZE POOL */}
-<section className="py-20 px-6 md:px-12 lg:px-20 max-w-6xl mx-auto">
-  <div className="text-center mb-12">
-    <h2 className="type-heading-xl text-white">
-      Prize <span className="text-[#c1121f]">Pool</span>
-    </h2>
-  </div>
-
-  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-    {[
-      {
-        place: "1st",
-        title: "Mahā Vijētā",
-        prize: "₹50,000",
-        icon: Trophy,
-        accent: "#c1121f",
-      },
-      {
-        place: "2nd",
-        title: "Utkarsh Puraskār",
-        prize: "₹30,000",
-        icon: Medal,
-        accent: "#d6b36a",
-      },
-      {
-        place: "3rd",
-        title: "Pratibhā Puraskār",
-        prize: "₹20,000",
-        icon: Medal,
-        accent: "#b87962",
-      },
-    ].map((item) => (
-      <div
-        key={item.place}
-        className="group relative overflow-hidden rounded-2xl border border-white/10 bg-[#0b0b0b] p-7 text-center transition-all duration-300 hover:-translate-y-1 hover:border-white/25"
-      >
-        <div
-          className="absolute inset-x-0 top-0 h-px opacity-70 transition-opacity group-hover:opacity-100"
-          style={{ backgroundColor: item.accent }}
-        />
-
-        <div
-          className="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-full border bg-white/[0.03]"
-          style={{ borderColor: `${item.accent}66`, color: item.accent }}
-        >
-          <item.icon size={32} strokeWidth={1.5} aria-hidden="true" />
+      {/* PRIZE POOL */}
+      <section className="py-20 px-6 md:px-12 lg:px-20 max-w-6xl mx-auto">
+        <div className="text-center mb-12">
+          <h2 className="type-heading-xl text-white">
+            Prize <span className="text-[#c1121f]">Pool</span>
+          </h2>
         </div>
 
-        <p
-          className="mb-2 text-sm uppercase tracking-widest"
-          style={{ color: item.accent }}
-        >
-          {item.place} Prize
-        </p>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {[
+            {
+              place: "1st",
+              title: "Mahā Vijētā",
+              prize: "₹50,000",
+              icon: Trophy,
+              accent: "#c1121f",
+            },
+            {
+              place: "2nd",
+              title: "Utkarsh Puraskār",
+              prize: "₹30,000",
+              icon: Medal,
+              accent: "#d6b36a",
+            },
+            {
+              place: "3rd",
+              title: "Pratibhā Puraskār",
+              prize: "₹20,000",
+              icon: Medal,
+              accent: "#b87962",
+            },
+          ].map((item) => (
+            <div
+              key={item.place}
+              className="group relative overflow-hidden rounded-2xl border border-white/10 bg-[#0b0b0b] p-7 text-center transition-all duration-300 hover:-translate-y-1 hover:border-white/25"
+            >
+              <div
+                className="absolute inset-x-0 top-0 h-px opacity-70 transition-opacity group-hover:opacity-100"
+                style={{ backgroundColor: item.accent }}
+              />
 
-        <h3 className="font-evelins text-2xl text-white mb-4">
-          {item.title}
-        </h3>
+              <div
+                className="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-full border bg-white/[0.03]"
+                style={{ borderColor: `${item.accent}66`, color: item.accent }}
+              >
+                <item.icon size={32} strokeWidth={1.5} aria-hidden="true" />
+              </div>
 
-        <div className="text-3xl font-evelins" style={{ color: item.accent }}>
-          {item.prize}
+              <p
+                className="mb-2 text-sm uppercase tracking-widest"
+                style={{ color: item.accent }}
+              >
+                {item.place} Prize
+              </p>
+
+              <h3 className="font-evelins text-2xl text-white mb-4">
+                {item.title}
+              </h3>
+
+              <div className="text-3xl font-evelins" style={{ color: item.accent }}>
+                {item.prize}
+              </div>
+            </div>
+          ))}
         </div>
-      </div>
-    ))}
-  </div>
-</section>
+      </section>
 
       {/* 7. GET INVOLVED SECTION (Refined Compact Cards) */}
       <section className="py-16 md:py-24 px-6 md:px-12 lg:px-20 max-w-6xl mx-auto relative z-20">
@@ -753,8 +753,8 @@ export default function VaarsaPage() {
         >
 
           <h2 className="text-center w-full block type-heading-xl text-white mt-1.5">
-              <span className="text-white">Get</span> <span className="text-[#c1121f]">Involved</span>
-            </h2>
+            <span className="text-white">Get</span> <span className="text-[#c1121f]">Involved</span>
+          </h2>
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">

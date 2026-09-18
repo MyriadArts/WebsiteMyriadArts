@@ -6,9 +6,9 @@ import { motion } from "framer-motion";
 import VaarsaAtmosphericBackground from "../shared/VaarsaAtmosphericBackground";
 
 const videos = [
-  { id: 1, title: "Podcasts", video: "/videos/home/media-podcast.mp4", link: "/media#podcasts", image: "/images/home/media-podcast-thumbnail.jpg" },
-  { id: 2, title: "Performances", video: "/videos/home/media-performances.mp4", link: "/media#performances", image: "/images/home/media-performances-dance.jpg" },
-  { id: 3, title: "Interviews", video: "/videos/vaarsa/vaarsa-showcase.mp4", link: "/media#interviews", image: "/images/home/media-interviews-thumbnail.jpeg" },
+  { id: 1, title: "Podcasts", video: "https://pub-de5dfcf82d8f4854a79642f955c48806.r2.dev/home/media-podcast.mp4", link: "/media#podcasts", image: "/images/home/media-podcast-thumbnail.jpg" },
+  { id: 2, title: "Performances", video: "https://pub-de5dfcf82d8f4854a79642f955c48806.r2.dev/home/media-performances.mp4", link: "/media#performances", image: "/images/home/media-performances-dance.jpg" },
+  { id: 3, title: "Interviews", video: "https://pub-de5dfcf82d8f4854a79642f955c48806.r2.dev/vaarsa/vaarsa-showcase.mp4", link: "/media#interviews", image: "/images/home/media-interviews-thumbnail.jpeg" },
 ];
 
 export default function MediaShowcase() {
@@ -22,9 +22,9 @@ export default function MediaShowcase() {
     if (!el) return;
 
     if (isInView) {
-      el.play().catch(() => {});
+      el.play().catch(() => { });
     } else {
-      try { el.pause(); } catch (e) {}
+      try { el.pause(); } catch (e) { }
     }
   }, [isInView]);
 
@@ -44,9 +44,9 @@ export default function MediaShowcase() {
   }, []);
 
   return (
-    <section 
-      ref={sectionRef} 
-      id="media" 
+    <section
+      ref={sectionRef}
+      id="media"
       className="relative w-full min-h-screen bg-[#0a0a0a] flex flex-col justify-end overflow-hidden pt-8 md:pt-12 pb-16 md:pb-24 isolate"
     >
       {/* Background Video */}
@@ -61,7 +61,7 @@ export default function MediaShowcase() {
           preload="none"
           className="w-full h-full object-cover opacity-50"
         >
-          <source src="/videos/home/media-showcase-bg.mp4" type="video/mp4" />
+          <source src="https://pub-de5dfcf82d8f4854a79642f955c48806.r2.dev/home/media-showcase-bg.mp4" type="video/mp4" />
         </video>
 
         {/* Cinematic Gradients */}
@@ -72,9 +72,9 @@ export default function MediaShowcase() {
 
       {/* Content */}
       <div className="relative z-10 w-full h-full flex flex-col justify-end pt-12 md:pt-16 pb-12 md:pb-16">
-        
+
         {/* Header */}
-        <motion.div 
+        <motion.div
           className="w-full px-[6vw] mb-4 md:mb-6"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -115,7 +115,7 @@ export default function MediaShowcase() {
           <h3 className="w-full px-[6vw] text-white/80 type-label-caps mb-4">
             Explore more
           </h3>
-          
+
           <div className="w-full px-[6vw] py-2">
             <div className="grid grid-cols-3 gap-6 w-full">
               {videos.map((video) => (
@@ -126,9 +126,9 @@ export default function MediaShowcase() {
                   whileHover={{ scale: 1.04, y: -4 }}
                 >
                   {/* Fallback Thumbnail Image */}
-                  <img 
-                    src={video.image} 
-                    alt={video.title} 
+                  <img
+                    src={video.image}
+                    alt={video.title}
                     className="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-10 transition-opacity duration-300"
                   />
 
@@ -160,7 +160,7 @@ export default function MediaShowcase() {
                 100% { transform: translate3d(-50%, 0, 0); }
               }
             `}</style>
-            <div 
+            <div
               className="flex gap-4 w-max items-center"
               style={{
                 animation: 'calakarMarquee 35s linear infinite',
@@ -175,9 +175,9 @@ export default function MediaShowcase() {
                   whileHover={{ scale: 1.06, y: -4 }}
                 >
                   {/* Fallback Thumbnail Image */}
-                  <img 
-                    src={video.image} 
-                    alt={video.title} 
+                  <img
+                    src={video.image}
+                    alt={video.title}
                     className="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-10 transition-opacity duration-300"
                   />
 
