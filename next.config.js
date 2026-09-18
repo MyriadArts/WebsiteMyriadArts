@@ -16,6 +16,10 @@ const nextConfig = {
       {
         protocol: "https",
         hostname: "pub-de5dfcf82d8f4854a79642f955c48806.r2.dev",
+      },
+      {
+        protocol: "https",
+        hostname: "media.myriadarts.in",
       }
     ],
   },
