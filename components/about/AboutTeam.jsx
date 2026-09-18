@@ -18,7 +18,7 @@ export default function AboutTeam() {
           {[
             { name: "Shreyas Desai", role: "Founder & Artistic Director", desc: "The mastermind behind the madness. Aditya orchestrates the collision of eras, engineering psychological landscapes.", img: "/images/team/shreyas-desai.jpeg" },
             { name: "Shruti Samant", role: "Creative Director", desc: "She doesn't design scenes; she builds environments where the screen disappears and raw emotion takes over.", img: "/images/team/shruti-samant.jpg" },
-            { name: "Kalvati Panchal", role: "Production Manager", desc: "The pulse regulator. Ensures the chaos is perfectly contained, weaponized, and delivered without latency.", img: "/images/team/kalvati-panchal.jpg" },
+            { name: "Kalvati Panchal", role: "Production Manager", desc: "The pulse regulator. Ensures the chaos is perfectly contained, weaponized, and delivered without latency.", img: "/images/team/kalavati-panchal.jpeg" },
             { name: "Akshata Awlegoankar", role: "Education Lead", desc: "Cultivating the next generation of artistic insurgents. Rewiring the minds and muscles of future architects.", img: "/images/team/akshata-awlegoankar.jpeg" }
           ].map((member, idx) => (
             <div

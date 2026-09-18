@@ -241,7 +241,7 @@ export default function VaarsaPage() {
             muted
             playsInline
             className="w-full h-full object-cover opacity-65 scale-105"
-            src="https://pub-de5dfcf82d8f4854a79642f955c48806.r2.dev/vaarsa/vaarsa-hero-bg.mp4"
+            src="https://media.myriadarts.in/vaarsa/vaarsa-hero-bg.mp4"
           />
         </div>
         <div className="absolute inset-0 bg-gradient-to-b from-[#050505]/80 via-[#050505]/45 to-[#050505]" />

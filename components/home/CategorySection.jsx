@@ -11,7 +11,7 @@ const categories = [
     subtitle: "Classical & Contemporary Masterclasses",
     details: "Intensive movement sessions shaped to balance expression, precision, and stage presence.",
     image: "/images/home/category-performance-cover.jpg",
-    video: "https://pub-de5dfcf82d8f4854a79642f955c48806.r2.dev/home/category-performances.mp4",
+    video: "https://media.myriadarts.in/home/category-performances.mp4",
     link: "/services#performances"
   },
   {
@@ -19,7 +19,7 @@ const categories = [
     subtitle: "Learn hands-on from industry masters",
     details: "Hands-on sessions built around technique, creative direction, and practical performance feedback.",
     image: "/images/home/category-workshop-cover.jpg",
-    video: "https://pub-de5dfcf82d8f4854a79642f955c48806.r2.dev/home/category-workshops.mp4",
+    video: "https://media.myriadarts.in/home/category-workshops.mp4",
     link: "/services#workshops"
   },
   {
@@ -27,7 +27,7 @@ const categories = [
     subtitle: "Live performances and breathtaking showcases",
     details: "Curated live moments designed to feel immersive, polished, and emotionally resonant.",
     image: "/images/home/category-events-cover.jpg",
-    video: "https://pub-de5dfcf82d8f4854a79642f955c48806.r2.dev/vaarsa/vaarsa-showcase.mp4",
+    video: "https://media.myriadarts.in/vaarsa/vaarsa-showcase.mp4",
     link: "/services#events"
   },
   {
@@ -35,7 +35,7 @@ const categories = [
     subtitle: "The rhythm and soul behind the stage",
     details: "Sound-led storytelling that supports atmosphere, pacing, and the cinematic flow of the experience.",
     image: "/images/home/category-music-performance.jpg",
-    video: "https://pub-de5dfcf82d8f4854a79642f955c48806.r2.dev/home/music-highlight.mp4",
+    video: "https://media.myriadarts.in/home/music-highlight.mp4",
     link: "/services#music"
   }
 ];

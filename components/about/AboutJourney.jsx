@@ -40,7 +40,7 @@ export default function AboutJourney() {
               <div className="bg-[#e6e2da] p-3 pb-12 shadow-[0_30px_60px_rgba(0,0,0,0.8)] w-full relative">
                 <div className="relative w-full aspect-[4/5] bg-black overflow-hidden group">
                   <Image
-                    src="/images/about/about-our-journey.jpeg"
+                    src="/images/about/about-our-journey.jpg"
                     alt="Myriad Origin"
                     fill
                     sizes="(max-width: 1024px) 240px, 300px"

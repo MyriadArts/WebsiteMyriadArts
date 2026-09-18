@@ -138,7 +138,7 @@ export default function HeroSection() {
           preload="metadata"
           className="w-full h-full object-cover scale-[1.05]"
         >
-          <source src="https://pub-de5dfcf82d8f4854a79642f955c48806.r2.dev/home/hero-background.mp4" type="video/mp4" />
+          <source src="https://media.myriadarts.in/home/hero-background.mp4" type="video/mp4" />
         </video>
       </motion.div>
 

@@ -18,13 +18,13 @@ export default function AboutHero() {
       {/* Floating Images (Lanterns) */}
       <div className="absolute inset-0 z-30 pointer-events-none">
         {[
-          { src: "/images/dance-illustrations/classical-dancer.png", size: "w-40 h-56", left: "8%", top: "15%", delay: 0.1 },
-          { src: "/images/dance-illustrations/contemporary-dancer.png", size: "w-40 h-56", left: "78%", top: "18%", delay: 0.3 },
-          { src: "/images/dance-illustrations/folk-dancer.png", size: "w-40 h-56", left: "5%", top: "55%", delay: 0.5 },
-          { src: "/images/dance-illustrations/ink-art-dancer.png", size: "w-40 h-56", left: "82%", top: "58%", delay: 0.7 },
-          { src: "/images/dance-illustrations/dancer-hand-mudra.png", size: "w-40 h-56", left: "42%", top: "-5%", delay: 0.9 },
-          { src: "/images/dance-illustrations/stage-performance-dancer.png", size: "w-40 h-56", left: "30%", top: "85%", delay: 1.1 },
-          { src: "/images/dance-illustrations/stage-performance-dancer.png", size: "w-40 h-56", left: "62%", top: "80%", delay: 1.3 },
+          { src: "/images/about/about-gallery-01.jpg", size: "w-40 h-56", left: "8%", top: "15%", delay: 0.1 },
+          { src: "/images/about/about-gallery-02.jpg", size: "w-40 h-56", left: "78%", top: "18%", delay: 0.3 },
+          { src: "/images/about/about-gallery-03.jpg", size: "w-40 h-56", left: "5%", top: "55%", delay: 0.5 },
+          { src: "/images/about/about-gallery-04.jpg", size: "w-40 h-56", left: "82%", top: "58%", delay: 0.7 },
+          { src: "/images/about/about-gallery-05.jpg", size: "w-40 h-56", left: "42%", top: "-5%", delay: 0.9 },
+          { src: "/images/about/about-gallery-06.jpg", size: "w-40 h-56", left: "30%", top: "85%", delay: 1.1 },
+          { src: "/images/about/about-gallery-06.jpg", size: "w-40 h-56", left: "62%", top: "80%", delay: 1.3 },
         ].map((lantern, idx) => (
           <motion.div
             key={idx}

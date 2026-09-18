@@ -29,7 +29,7 @@ export default function RootLayout({ children }) {
         <link
           rel="preload"
           as="video"
-          href="https://pub-de5dfcf82d8f4854a79642f955c48806.r2.dev/splash/splash-intro.mp4"
+          href="https://media.myriadarts.in/splash/splash-intro.mp4"
           type="video/mp4"
         />
 

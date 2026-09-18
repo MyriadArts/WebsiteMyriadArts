@@ -28,14 +28,24 @@ export default function SplashScreen({ onComplete }) {
     onComplete?.();
   };
 
-  // 1. Fallback timer (safeguard in case user has extreme latency)
   useEffect(() => {
     document.body.style.overflow = "hidden";
 
-    // If video hasn't loaded after 4.5s, dismiss smoothly to avoid blocking the user
+    // Attempt direct autoplay on mount
+    if (videoRef.current) {
+      videoRef.current.muted = true;
+      videoRef.current.defaultMuted = true;
+      videoRef.current.play().then(() => {
+        setIsVideoReady(true);
+      }).catch(() => {
+        // Will retry on loadeddata/canplay
+      });
+    }
+
+    // Safety fallback: dismiss smoothly after 5s max if network hangs
     fallbackTimerRef.current = setTimeout(() => {
       complete();
-    }, 4500);
+    }, 5000);
 
     return () => {
       if (fallbackTimerRef.current) clearTimeout(fallbackTimerRef.current);
@@ -44,20 +54,16 @@ export default function SplashScreen({ onComplete }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // 2. Handle video stream events
   const handleCanPlay = () => {
     setIsVideoReady(true);
-    if (videoRef.current) {
-      videoRef.current.play().catch(() => {
-        // Autoplay policy fallback: dismiss quickly
-        setTimeout(() => complete(), 600);
-      });
+    if (videoRef.current && videoRef.current.paused) {
+      videoRef.current.play().catch(() => {});
     }
   };
 
   const handleTimeUpdate = () => {
     const video = videoRef.current;
-    if (video && video.duration > 0 && video.currentTime >= video.duration - 0.2) {
+    if (video && video.duration > 0 && video.currentTime >= video.duration - 0.25) {
       complete();
     }
   };
@@ -107,14 +113,16 @@ export default function SplashScreen({ onComplete }) {
         )}
       </AnimatePresence>
 
-      {/* Layer 2: Cloudflare R2 Video (Fades in seamlessly once buffered) */}
+      {/* Layer 2: Cloudflare R2 Video with Local Fallback */}
       <motion.video
         ref={videoRef}
+        autoPlay
         muted
         playsInline
         preload="auto"
-        onCanPlayThrough={handleCanPlay}
+        onCanPlay={handleCanPlay}
         onLoadedData={handleCanPlay}
+        onCanPlayThrough={handleCanPlay}
         onTimeUpdate={handleTimeUpdate}
         onEnded={complete}
         className="w-full max-w-4xl rounded-2xl shadow-2xl object-cover pointer-events-none relative z-20"
@@ -127,6 +135,10 @@ export default function SplashScreen({ onComplete }) {
       >
         <source
           src="https://pub-de5dfcf82d8f4854a79642f955c48806.r2.dev/splash/splash-intro.mp4"
+          type="video/mp4"
+        />
+        <source
+          src="/videos/splash/splash-intro-faststart.mp4"
           type="video/mp4"
         />
       </motion.video>

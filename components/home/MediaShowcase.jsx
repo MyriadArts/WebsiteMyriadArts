@@ -6,9 +6,9 @@ import { motion } from "framer-motion";
 import VaarsaAtmosphericBackground from "../shared/VaarsaAtmosphericBackground";
 
 const videos = [
-  { id: 1, title: "Podcasts", video: "https://pub-de5dfcf82d8f4854a79642f955c48806.r2.dev/home/media-podcast.mp4", link: "/media#podcasts", image: "/images/home/media-podcast-thumbnail.jpg" },
-  { id: 2, title: "Performances", video: "https://pub-de5dfcf82d8f4854a79642f955c48806.r2.dev/home/media-performances.mp4", link: "/media#performances", image: "/images/home/media-performances-dance.jpg" },
-  { id: 3, title: "Interviews", video: "https://pub-de5dfcf82d8f4854a79642f955c48806.r2.dev/vaarsa/vaarsa-showcase.mp4", link: "/media#interviews", image: "/images/home/media-interviews-thumbnail.jpeg" },
+  { id: 1, title: "Podcasts", video: "https://media.myriadarts.in/home/media-podcast.mp4", link: "/media#podcasts", image: "/images/home/media-podcast-thumbnail.jpg" },
+  { id: 2, title: "Performances", video: "https://media.myriadarts.in/home/media-performances.mp4", link: "/media#performances", image: "/images/home/media-performances-dance.jpg" },
+  { id: 3, title: "Interviews", video: "https://media.myriadarts.in/vaarsa/vaarsa-showcase.mp4", link: "/media#interviews", image: "/images/home/media-interviews-thumbnail.jpeg" },
 ];
 
 export default function MediaShowcase() {
@@ -61,7 +61,7 @@ export default function MediaShowcase() {
           preload="none"
           className="w-full h-full object-cover opacity-50"
         >
-          <source src="https://pub-de5dfcf82d8f4854a79642f955c48806.r2.dev/home/media-showcase-bg.mp4" type="video/mp4" />
+          <source src="https://media.myriadarts.in/home/media-showcase-bg.mp4" type="video/mp4" />
         </video>
 
         {/* Cinematic Gradients */}
