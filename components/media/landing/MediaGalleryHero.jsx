@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useMemo } from "react";
+import { useRef, useMemo, useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import SectionHeading from "../../ui/SectionHeading";
@@ -9,6 +9,8 @@ import VaarsaAtmosphericBackground from "../../shared/VaarsaAtmosphericBackgroun
 
 export default function MediaGalleryHero({ videos = [] }) {
   const containerRef = useRef(null);
+  // true once critical hero images are ready (loaded or failed gracefully)
+  const [heroReady, setHeroReady] = useState(false);
 
   // Get a subset of video thumbnails deterministically to avoid hydration mismatches
   const { col1, col2, col3 } = useMemo(() => {
@@ -36,6 +38,70 @@ export default function MediaGalleryHero({ videos = [] }) {
     };
   }, [videos]);
 
+  // Identify the unique critical images: the base (first unique) image from each column.
+  // These are the images visible in the initial hero viewport before any scrolling.
+  const criticalImages = useMemo(() => {
+    const seen = new Set();
+    const unique = [];
+    // col1[0], col2[0], col3[0] are the first (and most visible) images in each column
+    for (const src of [col1[0], col2[0], col3[0]]) {
+      if (src && !seen.has(src)) {
+        seen.add(src);
+        unique.push(src);
+      }
+    }
+    return unique;
+  }, [col1, col2, col3]);
+
+  // Preload the critical images once on mount, before revealing the hero.
+  // Uses the browser's native Image() constructor - no libraries needed.
+  // A safety timeout of 5s ensures the hero is revealed even if images fail.
+  useEffect(() => {
+    // If there are no critical images (e.g. no videos), reveal immediately.
+    if (criticalImages.length === 0) {
+      setHeroReady(true);
+      return;
+    }
+
+    let settled = 0;
+    const total = criticalImages.length;
+    let released = false;
+
+    const release = () => {
+      if (released) return;
+      released = true;
+      setHeroReady(true);
+    };
+
+    const onLoad = () => {
+      settled++;
+      if (settled >= total) release();
+    };
+
+    // Preload each critical image; count both load and error as "settled"
+    const imgs = criticalImages.map(src => {
+      const img = new window.Image();
+      img.onload = onLoad;
+      img.onerror = onLoad; // failed image still counts - never block forever
+      img.src = src;
+      return img;
+    });
+
+    // Safety timeout: reveal after 5s regardless of image status
+    const safetyTimer = setTimeout(release, 5000);
+
+    return () => {
+      clearTimeout(safetyTimer);
+      // Detach handlers to prevent stale callbacks on unmount
+      imgs.forEach(img => {
+        img.onload = null;
+        img.onerror = null;
+      });
+    };
+    // criticalImages reference is stable (derived from useMemo) - run once on mount
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start end", "end start"],
@@ -54,7 +120,15 @@ export default function MediaGalleryHero({ videos = [] }) {
       <VaarsaAtmosphericBackground />
       
       {/* 1. 3D Tilted Grid Wrapper (Sticky Background) */}
-      <div className="sticky top-0 left-0 w-full h-screen flex justify-center items-center overflow-hidden" style={{ perspective: "1500px" }}>
+      {/* Gate the grid visibility behind heroReady to prevent incomplete image flash */}
+      <div
+        className="sticky top-0 left-0 w-full h-screen flex justify-center items-center overflow-hidden"
+        style={{
+          perspective: "1500px",
+          opacity: heroReady ? 1 : 0,
+          transition: heroReady ? "opacity 0.6s ease" : "none",
+        }}
+      >
         
         <motion.div 
           className="w-[150vw] md:w-[120vw] h-[250vh] flex gap-4 md:gap-8 justify-center items-start origin-center"
@@ -250,12 +324,3 @@ export default function MediaGalleryHero({ videos = [] }) {
     </section>
   );
 }
-
-
-
-
-
-
-
-
-

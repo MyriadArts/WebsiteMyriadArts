@@ -26,6 +26,13 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className={inter.variable}>
       <head>
+        <link
+          rel="preload"
+          as="video"
+          href="https://pub-de5dfcf82d8f4854a79642f955c48806.r2.dev/splash/splash-intro.mp4"
+          type="video/mp4"
+        />
+
         <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
       </head>
       <body className="bg-[#050505] text-white font-sans relative isolate min-h-screen">

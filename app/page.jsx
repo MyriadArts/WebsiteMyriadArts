@@ -13,28 +13,25 @@ import PartnersSection from "../components/home/PartnersSection";
 import Footer from "../components/shared/Footer";
 
 export default function HomePage() {
-  const [showSplash, setShowSplash] = useState(true);
-  
-  console.log("[PAGE] Render — showSplash =", showSplash);
+  // null = not yet determined (avoids SSR/hydration mismatch).
+  // true = show splash.  false = skip splash.
+  const [showSplash, setShowSplash] = useState(null);
 
+  // Run ONCE on mount - read sessionStorage synchronously on the client only.
+  // The empty dependency array [] ensures this runs exactly once on mount.
   useEffect(() => {
-    const sessionFlag = sessionStorage.getItem("myriad-splash-v3");
-    console.log("[PAGE] mounted");
-    console.log("[PAGE] session flag =", sessionFlag);
-    console.log("[PAGE] showSplash =", showSplash);
-
-    if (sessionFlag) {
-      console.log("[PAGE] setting showSplash false because session flag exists on mount");
-      setShowSplash(false);
-    }
-  }, [showSplash]);
+    const alreadySeen = sessionStorage.getItem("myriad-splash-v3");
+    setShowSplash(alreadySeen ? false : true);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const handleSplashComplete = () => {
-    console.log("[PAGE] setting session flag to 'true'");
     sessionStorage.setItem("myriad-splash-v3", "true");
-    console.log("[PAGE] setting showSplash false because handleSplashComplete fired");
     setShowSplash(false);
   };
+
+  // While the session check hasn't run yet (null), render nothing.
+  // This prevents any flash of incorrect state before client hydration.
+  if (showSplash === null) return null;
 
   return (
     <>

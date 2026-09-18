@@ -299,7 +299,7 @@ export default function AboutPage() {
               transition={{ duration: 0.8, ease: "easeInOut" }}
               className="absolute inset-0"
             >
-              <Image src={ecosystemData[activeTab].image} alt="Background" fill className="object-cover" />
+              <Image src={ecosystemData[activeTab].image} alt="Background" fill sizes="100vw" className="object-cover" />
             </motion.div>
           </AnimatePresence>
         </div>
@@ -345,7 +345,7 @@ export default function AboutPage() {
                   <div className="w-full lg:w-5/12">
                     <div className="relative aspect-[4/3] border border-white/20 p-2 bg-[#0a0202]">
                       <div className="relative w-full h-full bg-[#030303] overflow-hidden group">
-                        <Image src={ecosystemData[activeTab].image} alt={activeTab} fill className="object-cover grayscale mix-blend-luminosity contrast-125 group-hover:scale-105 transition-transform duration-700" />
+                        <Image src={ecosystemData[activeTab].image} alt={activeTab} fill sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 40vw" className="object-cover grayscale mix-blend-luminosity contrast-125 group-hover:scale-105 transition-transform duration-700" />
                         <div className="absolute inset-0 bg-[#c1121f]/20 mix-blend-multiply"></div>
                       </div>
                     </div>
