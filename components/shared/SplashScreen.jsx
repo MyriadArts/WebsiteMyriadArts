@@ -37,16 +37,14 @@ export default function SplashScreen({ onComplete }) {
       
       const playPromise = video.play();
       if (playPromise !== undefined) {
-        playPromise.catch(() => {
-          // Retry on user interaction or next frame
-        });
+        playPromise.catch(() => {});
       }
     }
 
-    // Safety fallback timer: auto complete after 5s max if video ends or stalls
+    // Safety fallback only if video is completely blocked/unresponsive for 15s
     fallbackTimerRef.current = setTimeout(() => {
       complete();
-    }, 5000);
+    }, 15000);
 
     return () => {
       if (fallbackTimerRef.current) clearTimeout(fallbackTimerRef.current);
@@ -55,9 +53,21 @@ export default function SplashScreen({ onComplete }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const handleTimeUpdate = () => {
+  const handleVideoPlaying = () => {
+    // Clear initial load fallback timer once video is actively playing smoothly
+    if (fallbackTimerRef.current) {
+      clearTimeout(fallbackTimerRef.current);
+      fallbackTimerRef.current = null;
+    }
+  };
+
+  const handleVideoError = () => {
     const video = videoRef.current;
-    if (video && video.duration > 0 && video.currentTime >= video.duration - 0.25) {
+    if (video && !video.src.includes("https://media.myriadarts.in/splash/splash-intro.mp4")) {
+      video.src = "https://media.myriadarts.in/splash/splash-intro.mp4";
+      video.load();
+      video.play().catch(() => complete());
+    } else {
       complete();
     }
   };
@@ -65,12 +75,12 @@ export default function SplashScreen({ onComplete }) {
   return (
     <motion.div
       onClick={complete}
-      className={`fixed inset-0 z-[9999] bg-black flex items-center justify-center overflow-hidden cursor-pointer ${
+      className={`fixed inset-0 z-[100000] bg-black flex items-center justify-center overflow-hidden cursor-pointer ${
         isDismissing ? "pointer-events-none" : ""
       }`}
       initial={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+      transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
     >
       {/* Radial Vignette Backdrop */}
       <div
@@ -80,30 +90,22 @@ export default function SplashScreen({ onComplete }) {
         }}
       />
 
-      {/* Cloudflare Video with Direct Native Controls & Fallback */}
+      {/* Direct Native Faststart Video - Plays until 100% complete (onEnded) */}
       <video
         ref={videoRef}
-        src="https://media.myriadarts.in/splash/splash-intro.mp4"
+        src="/videos/splash/splash-intro-faststart.mp4"
         autoPlay
         muted
         playsInline
         preload="auto"
-        onTimeUpdate={handleTimeUpdate}
+        onPlay={handleVideoPlaying}
+        onPlaying={handleVideoPlaying}
         onEnded={complete}
-        onError={() => {
-          const video = videoRef.current;
-          if (video && !video.src.includes("/videos/splash/splash-intro-faststart.mp4")) {
-            video.src = "/videos/splash/splash-intro-faststart.mp4";
-            video.load();
-            video.play().catch(() => complete());
-          } else {
-            complete();
-          }
-        }}
+        onError={handleVideoError}
         className="w-full max-w-4xl rounded-2xl shadow-2xl object-cover pointer-events-none relative z-20 opacity-100"
       >
-        <source src="https://media.myriadarts.in/splash/splash-intro.mp4" type="video/mp4" />
         <source src="/videos/splash/splash-intro-faststart.mp4" type="video/mp4" />
+        <source src="https://media.myriadarts.in/splash/splash-intro.mp4" type="video/mp4" />
       </video>
 
       {/* Skip indicator */}
