@@ -30,7 +30,7 @@ export default function PartnersSection() {
   ];
 
   return (
-    <section id="partners" className="relative w-full bg-[#050505] overflow-hidden flex flex-col justify-center py-12 md:py-20">
+    <section id="partners" className="relative w-full bg-[#050505] overflow-hidden flex flex-col justify-center pt-16 pb-28 md:pt-24 md:pb-36">
       <VaarsaAtmosphericBackground />
       
       {/* Background Image */}
@@ -141,7 +141,7 @@ export default function PartnersSection() {
       </div>
 
       {/* Bottom fade into next section */}
-      <div className="absolute bottom-0 left-0 w-full h-[20vh] bg-gradient-to-t from-[#050505] via-[#050505]/70 to-transparent z-20 pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-full h-24 md:h-32 bg-gradient-to-t from-[#050505] via-[#050505]/60 to-transparent z-20 pointer-events-none" />
 
     </section>
   );

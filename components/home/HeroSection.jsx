@@ -131,14 +131,15 @@ export default function HeroSection() {
       >
         <video
           ref={videoRef}
+          src="https://media.myriadarts.in/home/hero-background-video.mp4"
           autoPlay
           loop
           muted
           playsInline
-          preload="metadata"
+          preload="auto"
           className="w-full h-full object-cover scale-[1.05]"
         >
-          <source src="https://media.myriadarts.in/home/hero-background.mp4" type="video/mp4" />
+          <source src="https://media.myriadarts.in/home/hero-background-video.mp4" type="video/mp4" />
         </video>
       </motion.div>
 

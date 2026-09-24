@@ -1,78 +1,105 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 import { motion } from "framer-motion";
+import VaarsaAtmosphericBackground from "../shared/VaarsaAtmosphericBackground";
 
 export default function HeroServices() {
-  const scrollToServices = (e) => {
-    e.preventDefault();
-    const element = document.getElementById("services-overview");
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    } else {
-      window.scrollTo({ top: window.innerHeight * 0.75, behavior: "smooth" });
-    }
-  };
-
   return (
-    <section className="relative w-full min-h-screen lg:min-h-screen flex items-center justify-center overflow-hidden bg-[#050505] text-white select-text py-20 px-6 md:px-12 pt-28">
-      {/* 1. VAARSA CINEMATIC BACKGROUND IMAGE LAYER */}
-      <div
-        className="absolute inset-0 z-0 bg-cover bg-center grayscale opacity-40 pointer-events-none"
-        style={{
-          backgroundImage: "url('/images/services/service-theatre.jpg')"
-        }}
-        aria-label="Cinematic Indian classical stage background"
-      />
+    <section className="sticky top-0 w-full h-screen max-h-screen py-0 flex flex-col items-center justify-center z-0 overflow-hidden bg-[#050505]">
+      <VaarsaAtmosphericBackground />
 
-      {/* Dark Linear Vignette Overlay (Center Radial Gradient Removed) */}
-      <div className="absolute inset-0 bg-gradient-to-b from-[#050505]/85 via-[#050505]/50 to-[#050505] z-10 pointer-events-none" />
-
-      {/* Dynamic Sweeping Stage Spotlights matching Vaarsa page */}
+      {/* Dynamic Sweeping Red Stage Lights (Vaarsa Page Style) */}
       <div className="absolute inset-0 pointer-events-none z-10 overflow-hidden">
+        {/* Left Corner Stage Light */}
         <motion.div
-          className="absolute -top-20 -left-20 w-[400px] h-[120vh] bg-gradient-to-b from-[#c1121f]/20 via-white/5 to-transparent origin-top-left blur-2xl mix-blend-screen"
+          className="absolute -top-20 -left-20 w-[300px] md:w-[400px] h-[120vh] bg-gradient-to-b from-[#c1121f]/25 via-[#c1121f]/5 to-transparent origin-top-left blur-2xl mix-blend-screen"
           animate={{ rotate: [-5, 15, -5] }}
           transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
         />
+        {/* Right Corner Stage Light */}
         <motion.div
-          className="absolute -top-20 -right-20 w-[400px] h-[120vh] bg-gradient-to-b from-[#c1121f]/20 via-white/5 to-transparent origin-top-right blur-2xl mix-blend-screen"
+          className="absolute -top-20 -right-20 w-[300px] md:w-[400px] h-[120vh] bg-gradient-to-b from-[#c1121f]/25 via-[#c1121f]/5 to-transparent origin-top-right blur-2xl mix-blend-screen"
           animate={{ rotate: [5, -15, 5] }}
           transition={{ duration: 14, repeat: Infinity, ease: "easeInOut" }}
         />
       </div>
 
-      {/* 2. CENTERED VAARSA-STYLE HERO CONTENT */}
-      <div className="relative z-20 text-center px-6 md:px-12 max-w-5xl mx-auto pt-6 flex flex-col items-center">
+      {/* Soft Crimson Center Backlight */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[320px] sm:w-[600px] h-[220px] sm:h-[300px] bg-[#c1121f]/15 rounded-full blur-[90px] sm:blur-[130px] pointer-events-none z-10" />
 
-        {/* Sub-heading / Tag */}
-        <motion.span
-          data-aos="fade-down"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="text-xs md:text-sm font-semibold tracking-[0.4em] text-[#c1121f] uppercase block mb-4"
-        >
-        </motion.span>
+      {/* Smooth Gradient Overlay Fade & Vignette */}
+      <div className="absolute inset-0 bg-gradient-to-b from-[#050505]/80 via-[#050505]/45 to-[#050505] z-0 pointer-events-none" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(5,5,5,0.85)_100%)] z-0 pointer-events-none" />
 
+      {/* Ambient Crimson Horizon Glow */}
+      <div className="absolute bottom-0 inset-x-0 h-36 bg-gradient-to-t from-[#c1121f]/25 via-transparent to-transparent blur-3xl pointer-events-none z-10" />
+
+      {/* Floating Images (Lanterns) - Exact Matching Set from About Hero */}
+      <div className="absolute inset-0 z-10 pointer-events-none">
+        {[
+          // 3 UP
+          { src: "/images/about/about-gallery-01.jpg", pos: "left-[2%] md:left-[4%] top-[5%] md:top-[7%]", delay: 0.1, rotate: "-rotate-3 md:-rotate-6" },
+          { src: "/images/about/about-gallery-02.jpg", pos: "left-[40%] md:left-[42%] top-[1%] md:top-[2%]", delay: 0.3, rotate: "" },
+          { src: "/images/about/about-gallery-03.jpg", pos: "right-[2%] md:right-[4%] top-[5%] md:top-[7%]", delay: 0.5, rotate: "rotate-3 md:rotate-6" },
+          // 4 DOWN
+          { src: "/images/about/about-gallery-04.jpg", pos: "left-[2%] md:left-[3%] bottom-[5%] md:bottom-[7%]", delay: 0.7, rotate: "-rotate-6 md:-rotate-12" },
+          { src: "/images/about/about-gallery-05.jpg", pos: "left-[21%] md:left-[23%] bottom-[1%] md:bottom-[2%]", delay: 0.9, rotate: "rotate-3" },
+          { src: "/images/about/about-gallery-06.jpg", pos: "right-[21%] md:right-[23%] bottom-[1%] md:bottom-[2%]", delay: 1.1, rotate: "-rotate-3" },
+          { src: "/images/about/about-abstract-dancers.jpg", pos: "right-[2%] md:right-[3%] bottom-[5%] md:bottom-[7%]", delay: 1.3, rotate: "rotate-6 md:rotate-12" },
+        ].map((lantern, idx) => (
+          <motion.div
+            key={idx}
+            className={`absolute w-16 h-24 sm:w-24 sm:h-32 md:w-32 md:h-44 lg:w-36 lg:h-50 xl:w-40 xl:h-56 ${lantern.pos} ${lantern.rotate || ""}`}
+            initial={{ y: "100vh", opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{
+              duration: 1.8,
+              ease: [0.16, 1, 0.3, 1],
+              delay: lantern.delay,
+            }}
+          >
+            <motion.div
+              className="w-full h-full relative overflow-hidden shadow-[0_0_35px_rgba(255,255,255,0.12)] border border-white/20 rounded-lg opacity-100"
+              animate={{ y: ["-4px", "4px", "-4px"] }}
+              transition={{
+                duration: 4 + (idx % 3) * 1.5,
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: lantern.delay,
+              }}
+            >
+              <Image
+                src={lantern.src}
+                alt="Lantern Image"
+                fill
+                sizes="(max-width: 640px) 120px, (max-width: 768px) 160px, (max-width: 1024px) 200px, 260px"
+                priority
+                className="object-cover transition-all duration-700 pointer-events-auto"
+              />
+            </motion.div>
+          </motion.div>
+        ))}
+      </div>
+
+      {/* Centerpiece Text */}
+      <div className="relative z-30 text-center px-4 sm:px-6 md:px-12 max-w-5xl mx-auto flex flex-col items-center pointer-events-none">
         {/* Theatrical Title Heading */}
         <motion.div
-          data-aos="zoom-in"
           initial={{ opacity: 0, scale: 0.9, y: 35 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-          className="relative flex justify-center items-center mb-6 group cursor-pointer w-fit mx-auto"
+          className="relative flex justify-center items-center mb-6 group cursor-pointer w-fit mx-auto pointer-events-auto"
         >
           {/* Heading Title with Solid Crimson Accent */}
-          <h1 className="font-evelins text-5xl sm:text-7xl md:text-8xl lg:text-[7rem] font-light leading-[0.95] tracking-wide text-white drop-shadow-[0_10px_40px_rgba(0,0,0,0.95)] group-hover:scale-105 transition-all duration-500 ease-out">
-            Artistry &amp; <span className="text-[#c1121f] font-normal">Heritage</span>
+          <h1 className="type-display-xl text-white drop-shadow-[0_10px_40px_rgba(0,0,0,0.95)] group-hover:scale-105 transition-all duration-500 ease-out">
+            Our&nbsp;<span className="text-[#c1121f] font-normal">Services</span>
           </h1>
         </motion.div>
 
         {/* Decorative Stage Divider Line */}
         <motion.div
-          data-aos="zoom-in"
-          data-aos-delay="150"
           initial={{ opacity: 0, scaleX: 0 }}
           animate={{ opacity: 1, scaleX: 1 }}
           transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
@@ -81,20 +108,14 @@ export default function HeroServices() {
 
         {/* Subtitle */}
         <motion.p
-          data-aos="fade-up"
-          data-aos-delay="250"
           initial={{ opacity: 0, y: 25 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-          className="text-base md:text-lg leading-relaxed max-w-2xl mx-auto mb-6 text-[#f5dbd8] font-light drop-shadow-[0_2px_15px_rgba(0,0,0,0.95)]"
+          className="text-base md:text-lg leading-relaxed max-w-2xl mx-auto mb-10 text-[#f5dbd8] font-light drop-shadow-[0_2px_15px_rgba(0,0,0,0.95)]"
         >
           Creating bespoke stage productions, training modules, cultural productions, and cinematic compositions—bringing Indian classical and contemporary art to the global stage.
         </motion.p>
-
       </div>
-
-      {/* Smooth Bottom Gradient Fade Transition */}
-      <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-b from-transparent via-[#000000]/60 to-[#000000] z-20 pointer-events-none" />
     </section>
   );
 }

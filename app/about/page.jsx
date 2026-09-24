@@ -15,6 +15,25 @@ export default function AboutPage() {
   const [articlesPage, setArticlesPage] = useState(1);
   const [selectedArticleModal, setSelectedArticleModal] = useState(null);
   const articlesSectionRef = useRef(null);
+  const heroVideoRef = useRef(null);
+  const heroSectionRef = useRef(null);
+
+  useEffect(() => {
+    const el = heroVideoRef.current;
+    if (!el) return;
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          el.play().catch(() => {});
+        } else {
+          try { el.pause(); } catch (e) {}
+        }
+      });
+    }, { threshold: 0.1 });
+    const target = heroSectionRef.current || el;
+    obs.observe(target);
+    return () => obs.disconnect();
+  }, []);
 
   const mediaArticles = [
     { id: 1, title: "Article 1", image: "/media-articles/article-feature-01.jpg" },
@@ -75,81 +94,31 @@ export default function AboutPage() {
         <div className="absolute bottom-[-20%] right-[-10%] w-[60%] h-[60%] bg-[#973838] rounded-full mix-blend-multiply filter blur-[150px] opacity-20 animate-pulse" style={{ animationDelay: '2s' }}></div>
       </div>
 
-      {/* HERO SECTION - FLOATING LANTERNS DESIGN (Fitted to 1 viewport screen) */}
-      <section className="sticky top-0 w-full h-screen max-h-screen py-0 flex flex-col items-center justify-center z-0 overflow-hidden bg-[#050505]">
-        <VaarsaAtmosphericBackground />
-        {/* Dynamic Sweeping Red Stage Lights (Vaarsa Page Style) */}
-        <div className="absolute inset-0 pointer-events-none z-10 overflow-hidden">
-          {/* Left Corner Stage Light */}
-          <motion.div
-            className="absolute -top-20 -left-20 w-[300px] md:w-[400px] h-[120vh] bg-gradient-to-b from-[#c1121f]/25 via-[#c1121f]/5 to-transparent origin-top-left blur-2xl mix-blend-screen"
-            animate={{ rotate: [-5, 15, -5] }}
-            transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
-          />
-          {/* Right Corner Stage Light */}
-          <motion.div
-            className="absolute -top-20 -right-20 w-[300px] md:w-[400px] h-[120vh] bg-gradient-to-b from-[#c1121f]/25 via-[#c1121f]/5 to-transparent origin-top-right blur-2xl mix-blend-screen"
-            animate={{ rotate: [5, -15, 5] }}
-            transition={{ duration: 14, repeat: Infinity, ease: "easeInOut" }}
-          />
+      {/* HERO SECTION - CLEAN VIDEO BACKGROUND */}
+      <section ref={heroSectionRef} className="sticky top-0 w-full h-screen max-h-screen py-0 flex flex-col items-center justify-center z-0 overflow-hidden bg-[#050505]">
+        {/* Clean Background Video Layer */}
+        <div className="absolute inset-0 z-0 origin-center bg-black overflow-hidden">
+          <video
+            ref={heroVideoRef}
+            src="https://media.myriadarts.in/home/about_herovideo.mp4?v=3"
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="auto"
+            className="w-full h-full object-cover scale-[1.03]"
+          >
+            <source src="https://media.myriadarts.in/home/about_herovideo.mp4?v=3" type="video/mp4" />
+          </video>
         </div>
 
-        {/* Soft Crimson Center Backlight */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[320px] sm:w-[600px] h-[220px] sm:h-[300px] bg-[#c1121f]/15 rounded-full blur-[90px] sm:blur-[130px] pointer-events-none z-10" />
-
-        {/* Smooth Gradient Overlay Fade & Vignette (Vaarsa Style) */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#050505]/80 via-[#050505]/45 to-[#050505] z-0 pointer-events-none" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(5,5,5,0.85)_100%)] z-0 pointer-events-none" />
-
-        {/* Ambient Crimson Horizon Glow (Vaarsa Style) */}
-        <div className="absolute bottom-0 inset-x-0 h-36 bg-gradient-to-t from-[#c1121f]/25 via-transparent to-transparent blur-3xl pointer-events-none z-10" />
-
-        {/* Floating Images (Lanterns) - All 7 fully visible within single screen */}
-        <div className="absolute inset-0 z-10 pointer-events-none">
-          {[
-            // 3 UP
-            { src: "/images/about/about-gallery-01.jpg", pos: "left-[3%] md:left-[6%] top-[8%] md:top-[10%]", delay: 0.1, rotate: "" },
-            { src: "/images/about/about-gallery-02.jpg", pos: "left-[43%] md:left-[45%] top-[4%] md:top-[5%]", delay: 0.3, rotate: "" },
-            { src: "/images/about/about-gallery-03.jpg", pos: "right-[3%] md:right-[6%] top-[8%] md:top-[10%]", delay: 0.5, rotate: "" },
-            // 4 DOWN
-            { src: "/images/about/about-gallery-04.jpg", pos: "left-[3%] md:left-[5%] bottom-[8%] md:bottom-[10%]", delay: 0.7, rotate: "-rotate-6 md:-rotate-12" },
-            { src: "/images/about/about-gallery-05.jpg", pos: "left-[25%] md:left-[28%] bottom-[4%] md:bottom-[5%]", delay: 0.9, rotate: "" },
-            { src: "/images/about/about-gallery-06.jpg", pos: "right-[25%] md:right-[28%] bottom-[4%] md:bottom-[5%]", delay: 1.1, rotate: "" },
-            { src: "/images/about/about-abstract-dancers.jpg", pos: "right-[3%] md:right-[5%] bottom-[8%] md:bottom-[10%]", delay: 1.3, rotate: "rotate-6 md:rotate-12" },
-          ].map((lantern, idx) => (
-            <motion.div
-              key={idx}
-              className={`absolute w-14 h-20 sm:w-20 sm:h-28 md:w-24 md:h-34 lg:w-28 lg:h-40 ${lantern.pos} ${lantern.rotate || ""}`}
-              initial={{ y: "100vh", opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{
-                duration: 1.8,
-                ease: [0.16, 1, 0.3, 1],
-                delay: lantern.delay,
-              }}
-            >
-              <motion.div
-                className="w-full h-full relative overflow-hidden shadow-[0_0_30px_rgba(255,255,255,0.1)] border border-white/20 rounded-md opacity-100"
-                animate={{ y: ["-3px", "3px", "-3px"] }}
-                transition={{
-                  duration: 4 + (idx % 3) * 1.5,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                  delay: lantern.delay,
-                }}
-              >
-                <Image
-                  src={lantern.src}
-                  alt="Lantern Image"
-                  fill
-                  sizes="(max-width: 640px) 80px, (max-width: 768px) 110px, 130px"
-                  priority
-                  className="object-cover transition-all duration-700 pointer-events-auto"
-                />
-              </motion.div>
-            </motion.div>
-          ))}
-        </div>
+        {/* Darkish Tint & Vignette Gradients from Homepage */}
+        <div className="absolute inset-0 bg-black/40 z-[5] pointer-events-none" />
+        <div className="absolute inset-x-0 top-0 h-[24vh] bg-gradient-to-b from-[#050505] via-[#050505]/88 to-transparent z-10 pointer-events-none" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_45%,rgba(255,255,255,0.015),transparent_35%),linear-gradient(180deg,rgba(5,5,5,0.1),rgba(5,5,5,0.35))] z-10 pointer-events-none" />
+        <div className="absolute -bottom-[2vh] left-0 w-full h-[40vh] bg-gradient-to-t from-[#050505] via-[#050505]/88 to-transparent z-10 pointer-events-none" />
+        <div className="absolute inset-x-0 bottom-0 h-[14vh] bg-gradient-to-t from-[#050505] via-[#050505]/90 to-transparent z-[11] pointer-events-none" />
+        <div className="absolute bottom-0 left-0 w-full h-36 pointer-events-none z-10" style={{ background: "linear-gradient(180deg, rgba(5,5,5,0) 0%, rgba(5,5,5,0.22) 55%, rgba(5,5,5,0.9) 100%)" }} />
 
         {/* Centerpiece Text with original font sizes */}
         <div className="relative z-30 text-center px-4 sm:px-6 md:px-12 max-w-5xl mx-auto flex flex-col items-center pointer-events-none">

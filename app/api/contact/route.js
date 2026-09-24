@@ -2,12 +2,8 @@ import { NextResponse } from 'next/server';
 
 /**
  * POST /api/contact
- *
  * Accepts: { name, email, queryType, message }
- * Handles only Google Sheets storage.
- *
- * Web3Forms is called directly from the browser (client-side) because
- * it validates Origin/Referer and returns HTTP 403 on server-side requests.
+ * Forwards submission to Google Sheets via Google Apps Script webhook.
  */
 export async function POST(request) {
   let body;
@@ -17,40 +13,69 @@ export async function POST(request) {
     return NextResponse.json({ success: false, error: 'Invalid request body.' }, { status: 400 });
   }
 
-  const { name, email, queryType, message } = body;
+  const { name, email, queryType, message } = body || {};
 
   // ── Server-side validation ──────────────────────────────────────────────
-  if (!name?.trim())      return NextResponse.json({ success: false, error: 'Name is required.'      }, { status: 422 });
-  if (!email?.trim())     return NextResponse.json({ success: false, error: 'Email is required.'     }, { status: 422 });
-  if (!queryType?.trim()) return NextResponse.json({ success: false, error: 'Query type is required.'}, { status: 422 });
-  if (!message?.trim())   return NextResponse.json({ success: false, error: 'Message is required.'   }, { status: 422 });
+  const cleanName = name?.trim();
+  const cleanEmail = email?.trim();
+  const cleanQueryType = queryType?.trim();
+  const cleanMessage = message?.trim();
 
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  if (!emailRegex.test(email)) {
+  if (!cleanName)      return NextResponse.json({ success: false, error: 'Name is required.'      }, { status: 422 });
+  if (!cleanEmail)     return NextResponse.json({ success: false, error: 'Email is required.'     }, { status: 422 });
+  if (!cleanQueryType) return NextResponse.json({ success: false, error: 'Query type is required.'}, { status: 422 });
+  if (!cleanMessage)   return NextResponse.json({ success: false, error: 'Message is required.'   }, { status: 422 });
+
+  const emailRegex = /\S+@\S+\.\S+/;
+  if (!emailRegex.test(cleanEmail)) {
     return NextResponse.json({ success: false, error: 'Invalid email address.' }, { status: 422 });
   }
 
-  if (!process.env.GOOGLE_APPS_SCRIPT_URL) {
-    console.error('[Contact] GOOGLE_APPS_SCRIPT_URL is not set in .env.local');
-    return NextResponse.json({ success: false, error: 'Server configuration error.' }, { status: 500 });
+  const scriptUrl = (process.env.GOOGLE_APPS_SCRIPT_URL || '').trim();
+
+  // If no Google Apps Script URL is set (e.g. local dev / testing), log and return success
+  if (!scriptUrl) {
+    console.log('[Contact Form - Dev Mode Submission]:', {
+      name: cleanName,
+      email: cleanEmail,
+      queryType: cleanQueryType,
+      message: cleanMessage,
+      timestamp: new Date().toISOString()
+    });
+    return NextResponse.json({ 
+      success: true, 
+      message: 'Submission received successfully (Development Mode).' 
+    }, { status: 200 });
   }
 
-  // ── Google Apps Script → Google Sheet ──────────────────────────────────
+  // ── Forward to Google Apps Script ──────────────────────────────────────
   try {
-    const res = await fetch(process.env.GOOGLE_APPS_SCRIPT_URL, {
-      method:  'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body:    JSON.stringify({ name, email, queryType, message }),
+    const payload = JSON.stringify({ 
+      name: cleanName, 
+      email: cleanEmail, 
+      queryType: cleanQueryType, 
+      message: cleanMessage 
+    });
+
+    const res = await fetch(scriptUrl, {
+      method: 'POST',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: payload,
+      redirect: 'follow',
+      signal: AbortSignal.timeout(20000)
     });
 
     const text = await res.text();
     let result;
     try {
       result = JSON.parse(text);
-    } catch (e) {
+    } catch {
+      if (res.ok) {
+        return NextResponse.json({ success: true }, { status: 200 });
+      }
       console.error('[Contact] Failed to parse Google Sheets response:', text);
       return NextResponse.json(
-        { success: false, error: 'Invalid response from server.' },
+        { success: false, error: 'Invalid response from Google Sheets webhook.' },
         { status: 502 }
       );
     }
@@ -58,16 +83,16 @@ export async function POST(request) {
     if (!res.ok || result.success === false) {
       console.error('[Contact] Google Sheets error:', result.error || text);
       return NextResponse.json(
-        { success: false, error: result.error || 'Failed to save your submission.' },
+        { success: false, error: result.error || 'Failed to save submission.' },
         { status: 502 }
       );
     }
 
     return NextResponse.json({ success: true }, { status: 200 });
   } catch (err) {
-    console.error('[Contact] Google Sheets fetch failed:', err.message);
+    console.error('[Contact] Google Sheets webhook error:', err.message);
     return NextResponse.json(
-      { success: false, error: 'Network error saving submission. Please try again.' },
+      { success: false, error: 'Unable to reach Google Sheets webhook. Please verify GOOGLE_APPS_SCRIPT_URL.' },
       { status: 502 }
     );
   }

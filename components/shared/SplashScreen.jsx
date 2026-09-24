@@ -93,7 +93,7 @@ export default function SplashScreen({ onComplete }) {
       {/* Direct Native Faststart Video - Plays until 100% complete (onEnded) */}
       <video
         ref={videoRef}
-        src="/videos/splash/splash-intro-faststart.mp4"
+        src="https://media.myriadarts.in/splash/splash-intro.mp4"
         autoPlay
         muted
         playsInline
@@ -104,7 +104,6 @@ export default function SplashScreen({ onComplete }) {
         onError={handleVideoError}
         className="w-full max-w-4xl rounded-2xl shadow-2xl object-cover pointer-events-none relative z-20 opacity-100"
       >
-        <source src="/videos/splash/splash-intro-faststart.mp4" type="video/mp4" />
         <source src="https://media.myriadarts.in/splash/splash-intro.mp4" type="video/mp4" />
       </video>
 
