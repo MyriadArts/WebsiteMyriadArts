@@ -51,7 +51,7 @@ export default function HeroServices() {
         ].map((lantern, idx) => (
           <motion.div
             key={idx}
-            className={`absolute w-16 h-24 sm:w-24 sm:h-32 md:w-32 md:h-44 lg:w-36 lg:h-50 xl:w-40 xl:h-56 ${lantern.pos} ${lantern.rotate || ""}`}
+            className={`absolute w-20 h-28 sm:w-28 sm:h-38 md:w-36 md:h-50 lg:w-44 lg:h-60 xl:w-48 xl:h-66 ${lantern.pos} ${lantern.rotate || ""}`}
             initial={{ y: "100vh", opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{
@@ -74,7 +74,7 @@ export default function HeroServices() {
                 src={lantern.src}
                 alt="Lantern Image"
                 fill
-                sizes="(max-width: 640px) 120px, (max-width: 768px) 160px, (max-width: 1024px) 200px, 260px"
+                sizes="(max-width: 640px) 140px, (max-width: 768px) 180px, (max-width: 1024px) 240px, 300px"
                 priority
                 className="object-cover transition-all duration-700 pointer-events-auto"
               />

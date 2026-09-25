@@ -71,21 +71,21 @@ export default function CategorySection() {
     return () => unsubscribe();
   }, [scrollYProgress, hoveredIndex]);
 
-  // High performance: Only play the video that is actively hovered!
+  // Autoplay all category panel videos once image split is reached (scrollFinished)
   useEffect(() => {
     categories.forEach((_, idx) => {
       const v = videosRef.current[idx];
       if (!v) return;
-      if (hoveredIndex === idx) {
+      if (scrollFinished) {
         const playPromise = v.play();
         if (playPromise !== undefined) {
           playPromise.catch(() => {});
         }
       } else {
-        v.pause();
+        try { v.pause(); } catch (e) {}
       }
     });
-  }, [hoveredIndex]);
+  }, [scrollFinished]);
 
   /* =========================================================================
      CONTINUOUS HOME PAGE TIMELINE
@@ -195,7 +195,7 @@ export default function CategorySection() {
                   >
                     {/* Desktop Cover Slice (Vertical Columns) */}
                     <div
-                      className="hidden md:block absolute top-0 bottom-0 pointer-events-none bg-[#050505]"
+                      className={`hidden md:block absolute top-0 bottom-0 pointer-events-none bg-[#050505] transition-opacity duration-700 ${scrollFinished ? "opacity-0" : "opacity-100"}`}
                       style={{
                         width: "100cqw",
                         left: `calc( -1 * ( ((100cqw - var(--gap) * 3) / 4) * ${idx} + var(--gap) * ${idx} ) )`
@@ -210,7 +210,7 @@ export default function CategorySection() {
 
                     {/* Mobile Cover Slice (Horizontal Rows) */}
                     <div
-                      className="block md:hidden absolute inset-0 pointer-events-none bg-[#050505] overflow-hidden"
+                      className={`block md:hidden absolute inset-0 pointer-events-none bg-[#050505] overflow-hidden transition-opacity duration-700 ${scrollFinished ? "opacity-0" : "opacity-100"}`}
                     >
                       <img
                         src="/images/home/gallery-split-background.jpg"
@@ -239,9 +239,9 @@ export default function CategorySection() {
                         loop
                         muted
                         playsInline
-                        preload="metadata"
+                        preload="auto"
                         className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ease-out z-[2] ${
-                          isHovered ? "opacity-100" : "opacity-0"
+                          scrollFinished ? "opacity-100" : "opacity-0"
                         }`}
                       />
                     )}
