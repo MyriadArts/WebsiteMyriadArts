@@ -61,7 +61,7 @@ export default function HeroServices() {
             }}
           >
             <motion.div
-              className="w-full h-full relative overflow-hidden shadow-[0_0_35px_rgba(255,255,255,0.12)] border border-white/20 rounded-lg opacity-100"
+              className="w-full h-full relative overflow-hidden shadow-[0_0_30px_rgba(255,255,255,0.08)] border border-white/15 rounded-lg opacity-70 hover:opacity-100 transition-opacity duration-500"
               animate={{ y: ["-4px", "4px", "-4px"] }}
               transition={{
                 duration: 4 + (idx % 3) * 1.5,
