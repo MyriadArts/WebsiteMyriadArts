@@ -55,6 +55,8 @@ const MagneticSurface = ({ children, className = "", strength = 14, ...props }) 
 
 export default function HeroSection() {
   const [index, setIndex] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+  const [isVideoReady, setIsVideoReady] = useState(false);
   const containerRef = useRef(null);
   const videoRef = useRef(null);
   const pointerX = useMotionValue(0.5);
@@ -84,6 +86,13 @@ export default function HeroSection() {
     const target = containerRef.current || el;
     obs.observe(target);
     return () => obs.disconnect();
+  }, []);
+
+    useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
   const { scrollYProgress } = useScroll({
@@ -129,17 +138,44 @@ export default function HeroSection() {
         animate={{ scale: 1.02 }}
         transition={{ duration: 3.5, ease: [0.22, 1, 0.36, 1] }}
       >
+        {/* Instant Exact Video Start Image until Video Plays */}
+        <div 
+          className={`absolute inset-0 bg-cover bg-center transition-opacity duration-300 ease-out z-0 ${
+            isVideoReady ? "opacity-0 pointer-events-none" : "opacity-100"
+          }`}
+          style={{ 
+            backgroundImage: isMobile 
+              ? "url('/images/video-posters/home-hero-mobile-poster.jpg')" 
+              : "url('/images/video-posters/home-hero-desktop-poster.jpg')" 
+          }}
+        />
         <video
           ref={videoRef}
-          src="https://media.myriadarts.in/home/hero-background-video.mp4"
+          key={isMobile ? "mobile-hero-1080p" : "desktop-hero-4k"}
+          src={isMobile ? "https://media.myriadarts.in/home/hero-background-video.mp4" : "https://media.myriadarts.in/home/hero-background-video-desktop.mp4"}
+          poster={isMobile ? "/images/video-posters/home-hero-mobile-poster.jpg" : "/images/video-posters/home-hero-desktop-poster.jpg"}
           autoPlay
           loop
           muted
           playsInline
           preload="auto"
-          className="w-full h-full object-cover scale-[1.05]"
+          onCanPlay={() => setIsVideoReady(true)}
+          onPlay={() => setIsVideoReady(true)}
+          onPlaying={() => setIsVideoReady(true)}
+          onLoadedData={() => setIsVideoReady(true)}
+          onTimeUpdate={(e) => { if (e.currentTarget.currentTime > 0) setIsVideoReady(true); }}
+          className="w-full h-full object-cover scale-[1.05] relative z-[1]"
         >
-          <source src="https://media.myriadarts.in/home/hero-background-video.mp4" type="video/mp4" />
+          {/* Laptops & Desktops (>= 768px): 4K Ultra HD Video */}
+          <source 
+            src="https://media.myriadarts.in/home/hero-background-video-desktop.mp4" 
+            type="video/mp4" 
+          />
+          {/* Mobile Devices (< 768px): 1080p Stream */}
+          <source 
+            src="https://media.myriadarts.in/home/hero-background-video.mp4" 
+            type="video/mp4" 
+          />
         </video>
       </motion.div>
 

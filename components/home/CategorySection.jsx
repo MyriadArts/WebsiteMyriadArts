@@ -195,7 +195,7 @@ export default function CategorySection() {
                   >
                     {/* Desktop Cover Slice (Vertical Columns) */}
                     <div
-                      className={`hidden md:block absolute top-0 bottom-0 pointer-events-none bg-[#050505] transition-opacity duration-700 ${scrollFinished ? "opacity-0" : "opacity-100"}`}
+                      className="hidden md:block absolute top-0 bottom-0 pointer-events-none bg-[#050505]"
                       style={{
                         width: "100cqw",
                         left: `calc( -1 * ( ((100cqw - var(--gap) * 3) / 4) * ${idx} + var(--gap) * ${idx} ) )`
@@ -210,7 +210,7 @@ export default function CategorySection() {
 
                     {/* Mobile Cover Slice (Horizontal Rows) */}
                     <div
-                      className={`block md:hidden absolute inset-0 pointer-events-none bg-[#050505] overflow-hidden transition-opacity duration-700 ${scrollFinished ? "opacity-0" : "opacity-100"}`}
+                      className="block md:hidden absolute inset-0 pointer-events-none bg-[#050505] overflow-hidden"
                     >
                       <img
                         src="/images/home/gallery-split-background.jpg"
@@ -232,10 +232,12 @@ export default function CategorySection() {
                     />
 
                     {/* Video on hover (only plays when card is active) */}
+                    
                     {category.video && (
                       <video
                         ref={(el) => { videosRef.current[idx] = el; }}
                         src={category.video}
+                        poster={category.image}
                         loop
                         muted
                         playsInline

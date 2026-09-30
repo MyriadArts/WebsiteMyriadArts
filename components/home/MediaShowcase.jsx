@@ -7,7 +7,7 @@ import VaarsaAtmosphericBackground from "../shared/VaarsaAtmosphericBackground";
 
 const videos = [
   { id: 1, title: "Podcasts", video: "https://media.myriadarts.in/home/media-podcast.mp4", link: "/media#podcasts", image: "/images/home/media-podcast-thumbnail.jpg" },
-  { id: 2, title: "Performances", video: "https://media.myriadarts.in/home/media-performances.mp4", link: "/media#performances", image: "/images/home/media-performances-dance.jpg" },
+  { id: 2, title: "Performances", video: "https://media.myriadarts.in/home/media-performances.mp4", link: "/media#performances", image: "/images/video-posters/media-showcase-poster.jpg" },
   { id: 3, title: "Interviews", video: "https://media.myriadarts.in/vaarsa/vaarsa-showcase.mp4", link: "/media#interviews", image: "/images/home/media-interviews-thumbnail.jpeg" },
 ];
 

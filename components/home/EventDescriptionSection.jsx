@@ -40,7 +40,7 @@ export default function EventDescriptionSection() {
         <div
           className="absolute inset-0 w-full h-full"
           style={{
-            backgroundImage: "url('/images/home/home-vaarsa-event-feature.png')",
+            backgroundImage: "url('/images/video-posters/home-vaarsa-poster.jpg')",
             backgroundSize: "cover",
             backgroundPosition: "center",
             filter: "grayscale(100%) brightness(1) contrast(1.1)",

@@ -14,6 +14,7 @@ export default function AboutPage() {
   const [showAllArticles, setShowAllArticles] = useState(false);
   const [articlesPage, setArticlesPage] = useState(1);
   const [selectedArticleModal, setSelectedArticleModal] = useState(null);
+  const [isAboutVideoReady, setIsAboutVideoReady] = useState(false);
   const articlesSectionRef = useRef(null);
   const heroVideoRef = useRef(null);
   const heroSectionRef = useRef(null);
@@ -98,15 +99,28 @@ export default function AboutPage() {
       <section ref={heroSectionRef} className="sticky top-0 w-full h-screen max-h-screen py-0 flex flex-col items-center justify-center z-0 overflow-hidden bg-[#050505]">
         {/* Clean Background Video Layer */}
         <div className="absolute inset-0 z-0 origin-center bg-black overflow-hidden">
+          {/* Instant Poster Fallback Image until Video Loads */}
+          <div 
+            className={`absolute inset-0 bg-cover bg-center transition-opacity duration-300 ease-out z-0 ${
+              isAboutVideoReady ? "opacity-0 pointer-events-none" : "opacity-100"
+            }`}
+            style={{ backgroundImage: "url('/images/video-posters/about-hero-poster.jpg')" }}
+          />
           <video
             ref={heroVideoRef}
             src="https://media.myriadarts.in/home/about_herovideo.mp4?v=3"
+            poster="/images/video-posters/about-hero-poster.jpg"
             autoPlay
             loop
             muted
             playsInline
             preload="auto"
-            className="w-full h-full object-cover scale-[1.03]"
+            onCanPlay={() => setIsAboutVideoReady(true)}
+            onPlay={() => setIsAboutVideoReady(true)}
+            onPlaying={() => setIsAboutVideoReady(true)}
+            onLoadedData={() => setIsAboutVideoReady(true)}
+            onTimeUpdate={(e) => { if (e.currentTarget.currentTime > 0) setIsAboutVideoReady(true); }}
+            className="w-full h-full object-cover scale-[1.03] relative z-[1]"
           >
             <source src="https://media.myriadarts.in/home/about_herovideo.mp4?v=3" type="video/mp4" />
           </video>
