@@ -12,7 +12,8 @@ export default function MissionSection() {
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
-    offset: ["start end", "end start"]
+    offset: ["start end", "end start"],
+    layoutEffect: false,
   });
 
   const yBg = useTransform(scrollYProgress, [0, 1], ["-12%", "12%"]);
@@ -84,11 +85,12 @@ export default function MissionSection() {
             className="relative w-[240px] sm:w-[280px] md:w-[380px] lg:w-[420px] aspect-square flex-shrink-0 mx-auto md:mx-0 mt-2 md:mt-6"
           >
             <div className="w-full h-full relative overflow-hidden bg-[#111] shadow-[0_50px_100px_rgba(0,0,0,0.9)]">
-              <div className="w-full h-full">
+              <div className="w-full h-full relative">
                 <Image
                    src="/images/home/gallery-classical-performance.jpg"
                   alt="Myriad Arts"
                   fill
+                  sizes="(max-width: 640px) 240px, (max-width: 768px) 280px, (max-width: 1024px) 380px, 420px"
                   className="object-cover grayscale brightness-90 transition-all duration-700 group-hover:grayscale-0 group-hover:brightness-100"
                 />
               </div>

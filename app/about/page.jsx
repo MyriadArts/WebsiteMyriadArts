@@ -3,8 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import AOS from "aos";
-import "aos/dist/aos.css";
+
 import Footer from "../../components/shared/Footer";
 import VaarsaAtmosphericBackground from "../../components/shared/VaarsaAtmosphericBackground";
 
@@ -51,13 +50,7 @@ export default function AboutPage() {
     : mediaArticles.slice(0, 3);
 
 
-  useEffect(() => {
-    AOS.init({ duration: 1000, once: true });
-    // Force a refresh to recalculate positions for Lenis
-    setTimeout(() => {
-      AOS.refresh();
-    }, 100);
-  }, []);
+
 
   const ecosystemData = {
     Performance: {
@@ -114,7 +107,7 @@ export default function AboutPage() {
             loop
             muted
             playsInline
-            preload="auto"
+            preload="metadata"
             onCanPlay={() => setIsAboutVideoReady(true)}
             onPlay={() => setIsAboutVideoReady(true)}
             onPlaying={() => setIsAboutVideoReady(true)}

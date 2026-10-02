@@ -50,7 +50,8 @@ export default function CategorySection() {
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
-    offset: ["start start", "end end"]
+    offset: ["start start", "end end"],
+    layoutEffect: false,
   });
 
   const smoothProgress = useSpring(scrollYProgress, {
@@ -241,7 +242,7 @@ export default function CategorySection() {
                         loop
                         muted
                         playsInline
-                        preload="auto"
+                        preload="none"
                         className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ease-out z-[2] ${
                           scrollFinished ? "opacity-100" : "opacity-0"
                         }`}

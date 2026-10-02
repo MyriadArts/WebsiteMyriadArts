@@ -26,24 +26,9 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className={inter.variable}>
       <head>
-        <link
-          rel="preload"
-          as="video"
-          href="https://media.myriadarts.in/splash/splash-intro.mp4"
-          type="video/mp4"
-        />
-        <link
-          rel="preload"
-          as="video"
-          href="https://media.myriadarts.in/home/hero-background.mp4?v=3"
-          type="video/mp4"
-        />
-        <link
-          rel="preload"
-          as="video"
-          href="https://media.myriadarts.in/home/about_herovideo.mp4?v=3"
-          type="video/mp4"
-        />
+        {/* Early connection hints for the media CDN — resolves DNS + TLS without downloading video bytes */}
+        <link rel="dns-prefetch" href="https://media.myriadarts.in" />
+        <link rel="preconnect" href="https://media.myriadarts.in" crossOrigin="anonymous" />
 
         <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
       </head>

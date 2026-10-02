@@ -11,7 +11,8 @@ export default function ContactPage() {
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
-    offset: ["start end", "end start"]
+    offset: ["start end", "end start"],
+    layoutEffect: false,
   });
 
   // FIX #10 — Parallax: dancer drifts upward as user scrolls down (stage entrance feel)

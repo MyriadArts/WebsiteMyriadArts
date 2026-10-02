@@ -10,8 +10,7 @@ import PerformanceService from '../../components/services/PerformanceService';
 import WorkshopService from '../../components/services/WorkshopService';
 import EventsService from '../../components/services/EventsService';
 import MusicService from '../../components/services/MusicService';
-import AOS from "aos";
-import "aos/dist/aos.css";
+
 
 // Framer Motion Variants
 const containerVariants = {
@@ -141,10 +140,6 @@ export default function ServicesPage() {
   };
 
   useEffect(() => {
-    AOS.init({ duration: 1000, once: true, offset: 140 });
-    setTimeout(() => {
-      AOS.refresh();
-    }, 100);
     return () => clearTimeouts();
   }, []);
 

@@ -20,7 +20,7 @@ export default function GlobalBackground() {
           opacity: { repeat: Infinity, duration: 10, ease: 'easeInOut' }
         }}
       >
-        <Image src="/images/home/gallery-mandala-art.png" alt="Texture" fill className="object-contain" />
+        <Image src="/images/home/gallery-mandala-art.png" alt="Texture" fill sizes="50vw" priority className="object-contain" />
       </motion.div>
 
       {/* Bottom Left Mandala */}
@@ -32,7 +32,7 @@ export default function GlobalBackground() {
           opacity: { repeat: Infinity, duration: 12, ease: 'easeInOut' }
         }}
       >
-        <Image src="/images/home/gallery-mandala-art.png" alt="Texture" fill className="object-contain" />
+        <Image src="/images/home/gallery-mandala-art.png" alt="Texture" fill sizes="60vw" className="object-contain" />
       </motion.div>
     </div>
   );

@@ -130,6 +130,7 @@ export default function ContactForm() {
                   value={formData[name]}
                   onChange={handleChange}
                   className="w-full rounded-xl pl-10 pr-4 py-3 type-body-md text-on-surface placeholder:text-text-muted/30 focus:outline-none transition-all duration-400 disabled:opacity-50"
+                  aria-label={placeholder}
                   style={{
                     background: 'rgba(6,6,6,0.7)',
                     border: '1px solid rgba(255,255,255,0.05)',
@@ -161,6 +162,7 @@ export default function ContactForm() {
                 value={formData.queryType}
                 onChange={handleChange}
                 className="w-full rounded-xl pl-10 pr-9 py-3 type-body-md text-on-surface appearance-none cursor-pointer focus:outline-none transition-all duration-400 disabled:opacity-50"
+                aria-label="Type of Inquiry"
                 style={{
                   background: 'rgba(6,6,6,0.7)',
                   border: '1px solid rgba(255,255,255,0.05)',
@@ -201,6 +203,7 @@ export default function ContactForm() {
                 value={formData.message}
                 onChange={handleChange}
                 className="w-full rounded-xl pl-10 pr-4 py-3 type-body-md text-on-surface placeholder:text-text-muted/30 focus:outline-none resize-none transition-all duration-400 disabled:opacity-50"
+                aria-label="Your message"
                 style={{
                   background: 'rgba(6,6,6,0.7)',
                   border: '1px solid rgba(255,255,255,0.05)',

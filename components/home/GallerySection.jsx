@@ -68,7 +68,7 @@ export default function GallerySection() {
           <motion.div className="w-1/3 flex flex-col gap-4 md:gap-8" style={{ y: yUp, willChange: "transform" }}>
             {col1.map((src, i) => (
               <div key={`col1-${i}`} className="relative w-full aspect-[3/4] md:aspect-video rounded-xl overflow-hidden shadow-[0_12px_30px_rgba(0,0,0,0.35)]">
-                <Image src={src} fill alt="Gallery image" loading="lazy" className="object-cover opacity-60 hover:opacity-100 transition-opacity duration-500" />
+                <Image src={src} fill sizes="33vw" alt="Gallery image" loading="lazy" className="object-cover opacity-60 hover:opacity-100 transition-opacity duration-500" />
               </div>
             ))}
           </motion.div>
@@ -77,7 +77,7 @@ export default function GallerySection() {
           <motion.div className="w-1/3 flex flex-col gap-4 md:gap-8" style={{ y: yDown, willChange: "transform" }}>
             {col2.map((src, i) => (
               <div key={`col2-${i}`} className="relative w-full aspect-[3/4] md:aspect-video rounded-xl overflow-hidden shadow-[0_12px_30px_rgba(0,0,0,0.35)]">
-                <Image src={src} fill alt="Gallery image" loading="lazy" className="object-cover opacity-60 hover:opacity-100 transition-opacity duration-500" />
+                <Image src={src} fill sizes="33vw" alt="Gallery image" loading="lazy" className="object-cover opacity-60 hover:opacity-100 transition-opacity duration-500" />
               </div>
             ))}
           </motion.div>
@@ -86,7 +86,7 @@ export default function GallerySection() {
           <motion.div className="w-1/3 flex flex-col gap-4 md:gap-8" style={{ y: yUp, willChange: "transform" }}>
             {col3.map((src, i) => (
               <div key={`col3-${i}`} className="relative w-full aspect-[3/4] md:aspect-video rounded-xl overflow-hidden shadow-[0_12px_30px_rgba(0,0,0,0.35)]">
-                <Image src={src} fill alt="Gallery image" loading="lazy" className="object-cover opacity-60 hover:opacity-100 transition-opacity duration-500" />
+                <Image src={src} fill sizes="33vw" alt="Gallery image" loading="lazy" className="object-cover opacity-60 hover:opacity-100 transition-opacity duration-500" />
               </div>
             ))}
           </motion.div>

@@ -17,6 +17,7 @@ export default function EventDescriptionSection() {
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start end", "end start"],
+    layoutEffect: false,
   });
 
   const bgParallaxY = useTransform(scrollYProgress, [0, 1], ["0%", "-8%"]);
@@ -136,6 +137,7 @@ export default function EventDescriptionSection() {
                 loop
                 muted
                 playsInline
+                preload="metadata"
                 className="absolute inset-0 w-full h-full object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-r from-[#050505]/80 via-transparent to-transparent" />

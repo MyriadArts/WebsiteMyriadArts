@@ -98,6 +98,7 @@ export default function HeroSection() {
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end start"],
+    layoutEffect: false,
   });
 
   const videoScale = useTransform(scrollYProgress, [0, 1], [1, 0.85]);
@@ -158,7 +159,7 @@ export default function HeroSection() {
           loop
           muted
           playsInline
-          preload="auto"
+          preload="metadata"
           onCanPlay={() => setIsVideoReady(true)}
           onPlay={() => setIsVideoReady(true)}
           onPlaying={() => setIsVideoReady(true)}

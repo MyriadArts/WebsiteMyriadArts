@@ -49,6 +49,7 @@ export default function PartnersSection() {
           src="/images/home/partners-backdrop.png" 
           alt="Dancers Background" 
           fill 
+          sizes="100vw"
           className="object-cover object-center opacity-100"
           priority
         />
