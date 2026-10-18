@@ -62,7 +62,7 @@ export default function SplashScreen({ onComplete }) {
   };
 
   const handleVideoError = () => {
-    // If CDN video fails to load, skip the splash screen gracefully
+    // If video fails to load, skip the splash screen gracefully
     complete();
   };
 
@@ -87,7 +87,7 @@ export default function SplashScreen({ onComplete }) {
       {/* Direct Native Faststart Video - Plays until 100% complete (onEnded) */}
       <video
         ref={videoRef}
-        src="https://media.myriadarts.in/splash/splash-intro.mp4"
+        src="/spash_screen.mp4"
         autoPlay
         muted
         playsInline
@@ -98,7 +98,7 @@ export default function SplashScreen({ onComplete }) {
         onError={handleVideoError}
         className="w-full max-w-4xl rounded-2xl shadow-2xl object-cover pointer-events-none relative z-20 opacity-100"
       >
-        <source src="https://media.myriadarts.in/splash/splash-intro.mp4" type="video/mp4" />
+        <source src="/spash_screen.mp4" type="video/mp4" />
       </video>
 
       {/* Skip indicator */}
