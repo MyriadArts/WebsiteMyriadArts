@@ -7,33 +7,33 @@ import VaarsaAtmosphericBackground from "../shared/VaarsaAtmosphericBackground";
 // ─── Local Performance Data ───────────────────────────────────────────────────
 const PERFORMANCES = [
   {
-    id: "geet-govinda",
-    title: "Geet Govinda",
+    id: "lokmat-dance",
+    title: "News 18 - Performance",
     description:
-      "Geet Govinda is a landmark classical performance by Myriad Arts that brings to life the lyrical poetry of the 12th-century poet Jayadeva. Performed in the tradition of Bharatanatyam and Odissi, this piece weaves together intricate footwork, expressive abhinaya, and evocative costumes to narrate the eternal love story of Radha and Krishna. A celebration of India's spiritual and artistic heritage.",
+      "We performed a captivating dance sequence for News 18, showcasing the rich cultural heritage of India through expressive movements and storytelling. The performance was a blend of traditional and contemporary styles, leaving the audience mesmerized.",
     date: "Aug 2025",
-    category: "Classical Dance",
-    shortDesc: "Bharatanatyam & Odissi — the eternal love of Radha and Krishna, live on stage.",
-    videoSrc: "/videos/GEET GOVINDA_1080p.mp4",
+    category: "Folk Dance Performance",
+    shortDesc: "Marathi folk dance performance for News 18, blending tradition and contemporary flair.",
+    videoSrc: "/videos/newsdance.mp4",
   },
   {
-    id: "stage-showcase-2025",
-    title: "Stage Showcase 2025",
+    id: "Lavani-2025",
+    title: "Lavani Performance",
     description:
-      "The Stage Showcase 2025 is a high-energy live performance that captures the spirit and diversity of Myriad Arts. From Bollywood showstoppers to raw folk expressions and sharp contemporary choreography, this showcase is a testament to the breadth of talent within the Myriad Arts family. Featuring original choreography, stunning costumes, and an electrifying stage presence — a night to remember.",
+      "Lavani is a traditional Marathi folk dance known for its powerful rhythm and expressive movements. Our Lavani performance was a vibrant display of cultural heritage, featuring colorful costumes, energetic choreography, and the soulful beats of traditional music.",
     date: "Aug 2025",
-    category: "Multi-Genre Performance",
-    shortDesc: "Bollywood, folk, and contemporary — one electrifying night of Myriad Arts.",
+    category: "Lavani Dance",
+    shortDesc: "Lavani dance performance showcasing the vibrant rhythm and expressive movements of Marathi folk culture.",
     videoSrc: "/videos/FilmForth QTTrim 2025_08_28_20_04_28.mp4",
   },
   {
-    id: "stage-performance",
-    title: "Stage Performance",
+    id: "airforce-performance",
+    title: "Indian Air Force Invited Us",
     description:
-      "A vibrant showcase of folk and contemporary stage arts, featuring colorful costumes, energetic choreography, and the rich cultural tapestry of Indian performing traditions. Every act is a celebration of the spirit and storytelling power of live performance.",
+      "We were honored to be invited by the Indian Air Force to perform at their prestigious event.",
     date: "2025",
     category: "Stage Arts",
-    shortDesc: "Colorful folk choreography and raw stage energy — a celebration of live performance.",
+    shortDesc: "Vasudev dance performance invited by the Indian Air Force, showcasing our artistic excellence on a grand stage.",
     videoSrc: "/videos/stage.mp4",
   },
   {
@@ -45,6 +45,25 @@ const PERFORMANCES = [
     category: "Festival Performance",
     shortDesc: "Traditional Maharashtrian folk music and dance in devotion to Ganpati Bappa.",
     videoSrc: "/videos/ganpati.mp4",
+  },
+   {
+    id: "marathi-folk-dance",
+    title: "Rotary Club - Marathi Folk Dance",
+    description:
+      "Marathi folk dance performance for the Rotary Club, showcasing the rich cultural heritage of Maharashtra through vibrant costumes, energetic movements, and traditional music. The performance was a celebration of community, tradition, and artistic expression.",
+    date: "2025",
+    category: "Folk Dance Performance",
+    shortDesc: "Marathi folk dance performance for the Rotary Club, showcasing the rich cultural heritage of Maharashtra through vibrant costumes, energetic movements, and traditional music.",
+    videoSrc: "/videos/malhardance.mp4",
+  },
+  {
+    id: "group-dance",
+    title: "Group Dance Performance",
+    description:
+      "Group indian dance performance showcasing the rich cultural heritage of India through synchronized movements, vibrant costumes, and traditional music. The performance was a celebration of unity, tradition, and artistic expression.",
+    category: "Group Performance",
+    shortDesc: "Group indian dance performance showcasing the rich cultural heritage of India through synchronized movements, vibrant costumes, and traditional music.",
+    videoSrc: "/videos/malhardance.mp4",
   },
 ];
 
