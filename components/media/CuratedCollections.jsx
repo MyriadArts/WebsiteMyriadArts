@@ -135,7 +135,7 @@ export default function CuratedCollections({ allPlaylists = [], compact = false,
       
       <SectionRenderer 
         title="Performances"
-        targetPlaylists={["Dance Antakshari", "Aaja Nachle - Bollywood & Freestyle", "Vaarsa - Reliving The Folk Art of India"]}
+        targetPlaylists={["Dance Antakshari", "Aaja Nachle - Bollywood & Freestyle"]}
         allPlaylists={allPlaylists}
         compact={compact}
       />

@@ -23,7 +23,7 @@ export default function MediaPage() {
       <LatestUploads videos={latestVideos} />
 
       {/* 3. Calakar Essentials / Featured Collection */}
-      <FeaturedCollection />
+      {/* <FeaturedCollection /> */}
 
       {/* 4. Curated Series & Playlists */}
       <CuratedCollections allPlaylists={allPlaylists} />
