@@ -480,7 +480,7 @@ export default function PerformanceJourneySection() {
                 animate={isHeadingInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
               >
-                Our <span className="text-[#c1121f]">Performance</span>
+                Our <span className="text-[#c1121f]">Performances</span>
               </motion.h2>
 
               <motion.p
