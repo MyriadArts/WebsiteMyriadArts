@@ -121,17 +121,17 @@ export default function CuratedCollections({ allPlaylists = [], compact = false,
     <section className={`${noPadding ? "" : "px-[6vw]"} ${compact ? "mt-12 pb-4" : "mt-[64px] pb-24 md:pb-36 mb-16"}`}>
       <SectionRenderer 
         title="Podcasts"
-        targetPlaylists={["Mini Podcast", "Unfiltered with Shreyas", "Can We Talk"]}
+        targetPlaylists={["Mini Podcast", "Unfiltered with Shreyas", "Can We Talk", "Potbhar Gappa", "Chance Pe Dance", "Thet Manatun (No filter)"]}
         allPlaylists={allPlaylists}
         compact={compact}
       />
       
-      <SectionRenderer 
+      {/* <SectionRenderer 
         title="Interviews"
         targetPlaylists={["Potbhar Gappa", "Chance Pe Dance", "Thet Manatun (No filter)"]}
         allPlaylists={allPlaylists}
         compact={compact}
-      />
+      /> */}
       
       <SectionRenderer 
         title="Performances"
