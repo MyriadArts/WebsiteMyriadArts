@@ -1,9 +1,10 @@
 export const dynamic = "force-dynamic";
 
 import { redirect } from "next/navigation";
-import { getByPlaylist } from "../../../../lib/media";
+import { getByPlaylist, getLiveVideos } from "../../../../lib/media";
 
 export default async function PlaylistRedirectPage({ params }) {
+  await getLiveVideos();
   const resolvedParams = await params;
   const playlistName = decodeURIComponent(resolvedParams.name);
   

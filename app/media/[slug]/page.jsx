@@ -5,7 +5,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import BackButton from "../../../components/media/detail/BackButton";
 import PlaylistQueue from "../../../components/media/detail/PlaylistQueue";
-import { getBySlug, getRelatedVideos, getByPlaylist, generateMediaStaticParams, generateVideoMetadata, generateJsonLd } from "../../../lib/media";
+import { getBySlug, getRelatedVideos, getByPlaylist, generateMediaStaticParams, generateVideoMetadata, generateJsonLd, getLiveVideos } from "../../../lib/media";
 import VideoPlayerHero from "../../../components/media/detail/VideoPlayerHero";
 import VideoMetadata from "../../../components/media/detail/VideoMetadata";
 import VideoActions from "../../../components/media/detail/VideoActions";
@@ -26,6 +26,7 @@ export async function generateMetadata({ params }) {
 }
 
 export default async function VideoDetailPage({ params, searchParams }) {
+  await getLiveVideos();
   const resolvedParams = await params;
   const resolvedSearchParams = await searchParams;
   const video = getBySlug(resolvedParams.slug);

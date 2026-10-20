@@ -6,9 +6,10 @@ import FeaturedCollection from "../../../components/media/FeaturedCollection";
 import CuratedCollections from "../../../components/media/CuratedCollections";
 import CommunitySection from "../../../components/media/CommunitySection";
 import Footer from "../../../components/shared/Footer";
-import { getFeaturedVideos, getLatestVideos, getAllPlaylists } from "../../../lib/media";
+import { getFeaturedVideos, getLatestVideos, getAllPlaylists, getLiveVideos } from "../../../lib/media";
 
-export default function MediaPage() {
+export default async function MediaPage() {
+  await getLiveVideos();
   const featured = getFeaturedVideos();
   const featuredVideos = featured.length > 0 ? featured.slice(0, 5) : getLatestVideos(5);
   const latestVideos = getLatestVideos(12);

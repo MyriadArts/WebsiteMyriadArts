@@ -71,10 +71,15 @@ loadEnv();
 const ARGS = process.argv.slice(2);
 const IS_DRY_RUN = ARGS.includes("--dry-run");
 const IS_VERBOSE = ARGS.includes("--verbose");
+const INCLUDE_SHORTS = ARGS.includes("--include-shorts");
 const maxUploadsArg = ARGS.find((a) => a.startsWith("--max-uploads="));
 const MAX_UPLOADS_TO_CHECK = maxUploadsArg
   ? parseInt(maxUploadsArg.split("=")[1], 10) || 50
   : 50;
+const minDurationArg = ARGS.find((a) => a.startsWith("--min-duration="));
+const MIN_DURATION = minDurationArg !== undefined
+  ? parseInt(minDurationArg.split("=")[1], 10)
+  : (INCLUDE_SHORTS ? 0 : 180);
 
 // ── Constants & Taxonomy ──────────────────────────────────────────────────────
 
@@ -278,6 +283,7 @@ process.on("SIGTERM", () => { releaseLock(); process.exit(1); });
  * @returns {string|null} Detection signal/reason or null
  */
 function getYouTubeShortReason(video) {
+  if (INCLUDE_SHORTS) return null;
   if (!video) return null;
 
   const title = video.snippet?.title || video.title || "";
@@ -334,9 +340,9 @@ function getYouTubeShortReason(video) {
     return "promo teaser clip (<= 120s)";
   }
 
-  // 5. Standard YouTube Short Duration ceiling (<= 180 seconds / 3 minutes)
-  if (durationSeconds > 0 && durationSeconds <= 180) {
-    return "duration <= 180s";
+  // 5. Standard YouTube Short Duration ceiling
+  if (MIN_DURATION > 0 && durationSeconds > 0 && durationSeconds <= MIN_DURATION) {
+    return `duration <= ${MIN_DURATION}s`;
   }
 
   return null;
@@ -605,10 +611,19 @@ async function runSync() {
   // 4. Discover Recent Uploads
   console.log(`📡  Querying latest ${MAX_UPLOADS_TO_CHECK} uploads from YouTube...`);
   let playlistItems = [];
+  let nextPageToken = "";
   try {
-    const playlistUrl = `${API_BASE_URL}/playlistItems?part=snippet,contentDetails&playlistId=${uploadsPlaylistId}&maxResults=${Math.min(MAX_UPLOADS_TO_CHECK, 50)}&key=${apiKey}`;
-    const playlistRes = await fetchJson(playlistUrl);
-    playlistItems = playlistRes.items || [];
+    while (playlistItems.length < MAX_UPLOADS_TO_CHECK) {
+      const pageSize = Math.min(MAX_UPLOADS_TO_CHECK - playlistItems.length, 50);
+      const pageParam = nextPageToken ? `&pageToken=${nextPageToken}` : "";
+      const playlistUrl = `${API_BASE_URL}/playlistItems?part=snippet,contentDetails&playlistId=${uploadsPlaylistId}&maxResults=${pageSize}${pageParam}&key=${apiKey}`;
+      const playlistRes = await fetchJson(playlistUrl);
+      const items = playlistRes.items || [];
+      if (items.length === 0) break;
+      playlistItems.push(...items);
+      nextPageToken = playlistRes.nextPageToken || "";
+      if (!nextPageToken) break;
+    }
   } catch (err) {
     console.error(`❌  [YouTube Sync] Failed to fetch playlist items: ${err.message}`);
     process.exit(1);

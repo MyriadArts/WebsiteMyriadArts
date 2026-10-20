@@ -33,6 +33,7 @@ This guide provides step-by-step instructions for deploying and running the **My
 ```
 
 ### Key Architectural Characteristics:
+
 1. **Dynamic File-Backed Data Layer:** `lib/media.js` reads `data/media.json` from the filesystem dynamically per request, enabling live updates when new videos are synced without rebuilding or restarting Next.js.
 2. **Atomic Synchronization Pipeline:** `scripts/youtube-sync.js` queries YouTube Data API v3, skips Shorts, enriches metadata, and atomically replaces `data/media.json` using process locks and temporary file swaps.
 3. **High-Performance Production Stack:** Next.js served via PM2 cluster behind Nginx with Let's Encrypt SSL.
@@ -42,12 +43,14 @@ This guide provides step-by-step instructions for deploying and running the **My
 ## 2. Server Prerequisites & Initial Setup
 
 ### 2.1 Server Requirements
+
 - **OS:** Ubuntu 22.04 LTS or 24.04 LTS (64-bit)
 - **CPU / RAM:** Minimum 1 vCPU, 1 GB RAM (2 GB recommended)
 - **Disk:** 15 GB+ SSD
 - **Network:** Ports 22 (SSH), 80 (HTTP), 443 (HTTPS) open in firewall
 
 ### 2.2 Initial Server Hardening & Packages
+
 Connect to your VPS via SSH and update the system:
 
 ```bash
@@ -64,6 +67,7 @@ sudo ufw enable
 ```
 
 ### 2.3 Install Node.js (Node.js 20 LTS)
+
 Install Node.js via NodeSource:
 
 ```bash
@@ -79,6 +83,7 @@ npm -v    # Should be v10.x.x
 ```
 
 ### 2.4 Install PM2 Globally
+
 ```bash
 sudo npm install -g pm2
 ```
@@ -88,6 +93,7 @@ sudo npm install -g pm2
 ## 3. Application Deployment & Environment Setup
 
 ### 3.1 Clone the Repository
+
 Create a directory for the application (e.g., `/var/www/myriad-arts`):
 
 ```bash
@@ -99,6 +105,7 @@ git clone <YOUR_GIT_REPOSITORY_URL> .
 ```
 
 ### 3.2 Install Dependencies
+
 Install production dependencies:
 
 ```bash
@@ -106,6 +113,7 @@ npm ci
 ```
 
 ### 3.3 Configure Environment Variables
+
 Create the production environment file `.env.production` (or `.env`):
 
 ```bash
@@ -138,12 +146,15 @@ chmod 600 .env.production
 Before launching the web app, test the YouTube sync process on the VPS:
 
 ### 4.1 Test Run with Dry-Run
+
 ```bash
 npm run media:sync -- --dry-run
 ```
+
 *Verify that 50 uploads are inspected, 25 Shorts skipped, and no file errors occur.*
 
 ### 4.2 Initial Production Data Sync
+
 Run the initial synchronization to ensure `data/media.json` is fully up to date:
 
 ```bash
@@ -157,11 +168,13 @@ Verify that `data/media.json` contains the latest videos and valid schema.
 ## 5. Build and Process Management (PM2)
 
 ### 5.1 Build the Next.js Application
+
 ```bash
 npm run build
 ```
 
 ### 5.2 Configure PM2 Ecosystem
+
 Create an `ecosystem.config.cjs` file in the root of the project:
 
 ```javascript
@@ -199,6 +212,7 @@ sudo chown -R $USER:$USER /var/log/myriad-arts
 ```
 
 ### 5.3 Start Application with PM2
+
 ```bash
 pm2 start ecosystem.config.cjs
 pm2 save
@@ -215,6 +229,7 @@ sudo env PATH=$PATH:/usr/bin pm2 startup systemd -u $USER --hp /home/$USER
 ## 6. Nginx Web Server & SSL Configuration
 
 ### 6.1 Create Nginx Site Configuration
+
 Create `/etc/nginx/sites-available/myriadarts.com`:
 
 ```bash
@@ -289,6 +304,7 @@ server {
 ```
 
 ### 6.2 Enable Nginx Site
+
 ```bash
 sudo ln -s /etc/nginx/sites-available/myriadarts.com /etc/nginx/sites-enabled/
 sudo nginx -t
@@ -296,6 +312,7 @@ sudo systemctl reload nginx
 ```
 
 ### 6.3 Issue Free SSL Certificate (Let's Encrypt / Certbot)
+
 ```bash
 sudo certbot --nginx -d myriadarts.com -d www.myriadarts.com
 ```
@@ -309,11 +326,13 @@ Certbot will automatically install the certificate, configure HTTPS redirection,
 Set up a Linux cron job to run the synchronization script automatically every 30 minutes.
 
 ### 7.1 Edit Crontab
+
 ```bash
 crontab -e
 ```
 
 ### 7.2 Add Synchronization Entry
+
 Add the following line to the crontab:
 
 ```cron
@@ -322,6 +341,7 @@ Add the following line to the crontab:
 ```
 
 > **Why this is safe:**
+>
 > - `scripts/youtube-sync.js` utilizes an exclusive file lock (`data/.sync.lock`). If a sync is already running, the new execution will exit cleanly without corruption.
 > - Stale locks (>15 minutes) are automatically detected and recovered.
 > - All writes to `data/media.json` are atomic (`.tmp.<pid>` $\rightarrow$ validation $\rightarrow$ POSIX rename).
@@ -411,28 +431,28 @@ Whenever you push new code to `main`, run:
 
 ## 10. Operations & Troubleshooting Cheatsheet
 
-| Task | Command |
-|---|---|
-| **Check App Status** | `pm2 status` |
-| **View Live App Logs** | `pm2 logs myriad-arts` |
+| Task                             | Command                                   |
+| -------------------------------- | ----------------------------------------- |
+| **Check App Status**       | `pm2 status`                            |
+| **View Live App Logs**     | `pm2 logs myriad-arts`                  |
 | **View YouTube Sync Logs** | `tail -f /var/log/myriad-arts/sync.log` |
-| **Run Manual Sync Test** | `npm run media:sync -- --dry-run` |
-| **Run Manual Real Sync** | `npm run media:sync` |
-| **Restart App** | `pm2 reload myriad-arts` |
-| **Test Nginx Config** | `sudo nginx -t` |
-| **Reload Nginx** | `sudo systemctl reload nginx` |
-| **Renew SSL Certificate** | `sudo certbot renew --dry-run` |
+| **Run Manual Sync Test**   | `npm run media:sync -- --dry-run`       |
+| **Run Manual Real Sync**   | `npm run media:sync`                    |
+| **Restart App**            | `pm2 reload myriad-arts`                |
+| **Test Nginx Config**      | `sudo nginx -t`                         |
+| **Reload Nginx**           | `sudo systemctl reload nginx`           |
+| **Renew SSL Certificate**  | `sudo certbot renew --dry-run`          |
 
 ---
 
 ## 11. Security & Production Checklist
 
-- [x] Node.js 20 LTS installed
-- [x] `.env.production` secured with `chmod 600`
-- [x] PM2 cluster mode configured with auto-restart on reboot
-- [x] Nginx reverse proxy configured with Gzip compression and security headers
-- [x] Let's Encrypt HTTPS enabled with auto-renewal
-- [x] Automated 30-minute sync cron configured with process locking
-- [x] Log rotation configured for all application and sync logs
-- [x] Dynamic filesystem reads enabled in `lib/media.js` for instant media reflection
-- [x] YouTube Shorts filtering active and verified
+- [X] Node.js 20 LTS installed
+- [X] `.env.production` secured with `chmod 600`
+- [X] PM2 cluster mode configured with auto-restart on reboot
+- [X] Nginx reverse proxy configured with Gzip compression and security headers
+- [X] Let's Encrypt HTTPS enabled with auto-renewal
+- [X] Automated 30-minute sync cron configured with process locking
+- [X] Log rotation configured for all application and sync logs
+- [X] Dynamic filesystem reads enabled in `lib/media.js` for instant media reflection
+- [X] YouTube Shorts filtering active and verified

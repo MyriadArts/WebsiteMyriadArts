@@ -1,0 +1,8 @@
+{
+  "crons": [
+    {
+      "path": "/api/media/sync",
+      "schedule": "0 0 * * *"
+    }
+  ]
+}

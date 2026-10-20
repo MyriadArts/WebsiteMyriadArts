@@ -6,9 +6,10 @@ import DigitalPresenceGrid from "../../components/media/landing/DigitalPresenceG
 import LandingCTA from "../../components/media/landing/LandingCTA";
 import Footer from "../../components/shared/Footer";
 import VaarsaAtmosphericBackground from "../../components/shared/VaarsaAtmosphericBackground";
-import { getAllVideos, getAllPlaylists } from "../../lib/media";
+import { getAllVideos, getAllPlaylists, getLiveVideos } from "../../lib/media";
 
-export default function MediaLandingPage() {
+export default async function MediaLandingPage() {
+  await getLiveVideos();
   const videos = getAllVideos();
   const allPlaylists = getAllPlaylists();
 
