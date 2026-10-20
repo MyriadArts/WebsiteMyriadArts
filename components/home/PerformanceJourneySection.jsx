@@ -63,7 +63,7 @@ const PERFORMANCES = [
       "Group indian dance performance showcasing the rich cultural heritage of India through synchronized movements, vibrant costumes, and traditional music. The performance was a celebration of unity, tradition, and artistic expression.",
     category: "Group Performance",
     shortDesc: "Group indian dance performance showcasing the rich cultural heritage of India through synchronized movements, vibrant costumes, and traditional music.",
-    videoSrc: "/videos/malhardance.mp4",
+    videoSrc: "/videos/groupdance.mp4",
   },
 ];
 
