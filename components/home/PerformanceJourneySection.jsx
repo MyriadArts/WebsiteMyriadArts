@@ -6,6 +6,16 @@ import VaarsaAtmosphericBackground from "../shared/VaarsaAtmosphericBackground";
 
 // ─── Local Performance Data ───────────────────────────────────────────────────
 const PERFORMANCES = [
+   {
+    id: "duo-dance",
+    title: "IIGF Performance",
+    description:
+      "It was a dream come true to perform in front of the stalwarts like Sudha Chandran and Megha Sampat",
+    date: "Mar 2025",
+    category: "Stage Performance",
+    shortDesc: "It was a dream come true to perform in front of the stalwarts like Sudha Chandran and Megha Sampat",
+    videoSrc: "/videos/duodance.mp4",
+  },
   {
     id: "lokmat-dance",
     title: "News 18 - Performance",
