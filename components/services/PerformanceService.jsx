@@ -143,7 +143,7 @@ export default function PerformanceService({ detailScrollRef }) {
               variants={textVariants}
               className="text-4xl md:text-5xl font-bold text-primary-container mb-3 font-sans"
             >
-              <AnimatedCounter end={25} suffix="+" />
+              <AnimatedCounter end={150} suffix="+" />
             </motion.div>
             <motion.p 
               variants={textVariants}
@@ -155,7 +155,7 @@ export default function PerformanceService({ detailScrollRef }) {
               variants={textVariants}
               className="font-sans text-text-muted mt-2 text-xs md:text-sm leading-relaxed"
             >
-              From Bharatanatyam to contemporary fusion
+              Across India including Tribal and Authentic Folk
             </motion.p>
           </motion.div>
 
