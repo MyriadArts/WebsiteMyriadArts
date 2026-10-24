@@ -410,6 +410,13 @@ export default function AboutPage() {
                 img: "/images/team/akshata-awlegoankar.jpeg",
                 instagram: "https://www.instagram.com/akshata_awlegaonkar/",
                 facebook: "https://www.facebook.com/akshata.awlegaonkar"
+              },
+              { 
+                name: "Shraddha Kadam", 
+                role: "Core Member", 
+                img: "/images/team/shraddha-kadam.jpeg",
+                instagram: "https://www.instagram.com/coffee_kafi_hot_hai/"
+            
               }
             ].map((member, idx) => (
               <div

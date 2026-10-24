@@ -19,7 +19,8 @@ export default function AboutTeam() {
             { name: "Shreyas Desai", role: "Founder & Artistic Director", desc: "The creative force behind Myriad Arts. Shreyas leads the artistic vision, curating performances that celebrate India's diverse folk and classical traditions.", img: "/images/team/shreyas-desai.jpeg" },
             { name: "Shruti Samant", role: "Creative Director", desc: "Brings each folk tradition to life with authenticity and artistry. Shruti shapes the visual language of every performance and workshop.", img: "/images/team/shruti-samant.jpg" },
             { name: "Kalvati Panchal", role: "Production Manager", desc: "Ensures every event runs seamlessly from first rehearsal to final bow. The backbone of every Myriad Arts production and live show.", img: "/images/team/kalavati-panchal.jpeg" },
-            { name: "Akshata Awlegoankar", role: "Education Lead", desc: "Nurturing the next generation of folk artists. Akshata designs workshop programmes that pass India's living traditions to younger audiences.", img: "/images/team/akshata-awlegoankar.jpeg" }
+            { name: "Akshata Awlegoankar", role: "Education Lead", desc: "Nurturing the next generation of folk artists. Akshata designs workshop programmes that pass India's living traditions to younger audiences.", img: "/images/team/akshata-awlegoankar.jpeg" },
+            { name: "Shraddha Kadam", role: "Core Member", desc: "A woman who is passionate about making a difference in her own way and likes to light up the every room she walks in.", img: "/images/team/shraddha-kadam.jpeg" }
           ].map((member, idx) => (
             <div
               key={idx}
