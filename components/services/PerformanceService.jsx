@@ -319,7 +319,7 @@ export default function PerformanceService({ detailScrollRef }) {
       )}
 
       {/*  Testimonials Section  */}
-      <section className="px-margin-mobile md:px-margin-desktop py-16 md:py-24 max-w-max-width mx-auto">
+      <section className="hidden px-margin-mobile md:px-margin-desktop py-16 md:py-24 max-w-max-width mx-auto">
         <motion.div 
           initial="hidden"
           whileInView="visible"
