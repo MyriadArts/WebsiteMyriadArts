@@ -1,23 +1,14 @@
 "use client";
 
-import { useRef, useState, useEffect } from "react";
+import { useRef } from "react";
 import Image from "next/image";
-import { motion, useScroll, useTransform, useSpring, useMotionValue } from "framer-motion";
+import { motion, useTransform, useSpring, useMotionValue } from "framer-motion";
 import VaarsaAtmosphericBackground from "../shared/VaarsaAtmosphericBackground";
 
 export default function MissionSection() {
   const sectionRef = useRef(null);
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
-
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start end", "end start"],
-    layoutEffect: false,
-  });
-
-  const yBg = useTransform(scrollYProgress, [0, 1], ["-12%", "12%"]);
-  const opacityBg = useTransform(scrollYProgress, [0, 0.5, 1], [0.1, 0.18, 0.1]);
 
   // Smooth spring physics for spotlight
   const springConfig = { damping: 25, stiffness: 150 };

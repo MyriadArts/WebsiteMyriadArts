@@ -11,4 +11,9 @@ node_modules
 scripts/.youtube-sync.lock
 
 # Migration artifacts — regenerate with: npm run migrate
-data/media-raw-backup.ndjson
+data/media-raw-backup.ndjson
+
+# Agent skills and lockfiles
+.agents/
+skills-lock.json
+

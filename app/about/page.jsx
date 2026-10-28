@@ -1,6 +1,5 @@
 "use client";
 import Image from "next/image";
-import Link from "next/link";
 import { useEffect, useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -11,7 +10,6 @@ export default function AboutPage() {
   const [activeTab, setActiveTab] = useState("Performance");
 
   const [showAllArticles, setShowAllArticles] = useState(false);
-  const [articlesPage, setArticlesPage] = useState(1);
   const [selectedArticleModal, setSelectedArticleModal] = useState(null);
   const [isAboutVideoReady, setIsAboutVideoReady] = useState(false);
   const articlesSectionRef = useRef(null);
@@ -48,8 +46,6 @@ export default function AboutPage() {
   const displayedArticles = showAllArticles
     ? mediaArticles
     : mediaArticles.slice(0, 3);
-
-
 
 
   const ecosystemData = {
@@ -547,10 +543,8 @@ export default function AboutPage() {
             onClick={() => {
               if (!showAllArticles) {
                 setShowAllArticles(true);
-                setArticlesPage(1);
               } else {
                 setShowAllArticles(false);
-                setArticlesPage(1);
                 setTimeout(() => {
                   if (articlesSectionRef.current) {
                     const elementPosition = articlesSectionRef.current.getBoundingClientRect().top;

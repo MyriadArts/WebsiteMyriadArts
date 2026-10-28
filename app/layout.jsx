@@ -1,6 +1,8 @@
 import "./globals.css";
 import { Inter } from "next/font/google";
 import CustomCursor from "../components/ui/CustomCursor";
+import Navbar from "../components/shared/Navbar";
+import GlobalBackground from "../components/shared/GlobalBackground";
 import SmoothScrollController from "../providers/SmoothScrollController";
 import AOSInit from "../providers/AOSInit";
 
@@ -18,9 +20,6 @@ export const metadata = {
     icon: "/logos/myriad-arts-logo.jpg"
   }
 };
-
-import Navbar from "../components/shared/Navbar";
-import GlobalBackground from "../components/shared/GlobalBackground";
 
 export default function RootLayout({ children }) {
   return (

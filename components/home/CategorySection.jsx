@@ -98,17 +98,8 @@ export default function CategorySection() {
   const cardRadius = useTransform(smoothProgress, [0.05, 0.45], [0, 16]);
   const overlayOpacity = useTransform(smoothProgress, [0.05, 0.45], [0.3, 0.75]);
 
-  const headingOpacity = 1;
-  const headingY = 0;
-
-  const getPanelTransforms = () => {
-    const z = 0;
-    const y = 0;
-    const rotateY = 0;
-    const shadowOpacity = useTransform(smoothProgress, [0.15, 0.45], [0.1, 0.4]);
-    const shadowString = useTransform(shadowOpacity, o => `0 20px 40px rgba(0,0,0,${o})`);
-    return { z, y, rotateY, shadowString };
-  };
+  const shadowOpacity = useTransform(smoothProgress, [0.15, 0.45], [0.1, 0.4]);
+  const cardShadow = useTransform(shadowOpacity, o => `0 20px 40px rgba(0,0,0,${o})`);
 
   return (
     <section id="categories" className="relative w-full bg-[#050505] pb-12">
@@ -127,7 +118,6 @@ export default function CategorySection() {
 
             <motion.div
               className="w-full flex flex-col items-center justify-center mb-4 md:mb-8 pointer-events-none"
-              style={{ opacity: headingOpacity, y: headingY }}
             >
               <motion.div
                 animate={{
@@ -152,7 +142,6 @@ export default function CategorySection() {
               onMouseLeave={() => scrollFinished && setHoveredIndex(null)}
             >
               {categories.map((category, idx) => {
-                const trans = getPanelTransforms(idx);
                 const isHovered = hoveredIndex === idx;
                 const isAnyHovered = hoveredIndex !== null;
 
@@ -178,10 +167,7 @@ export default function CategorySection() {
                       }`}
                     style={{
                       borderRadius: cardRadius,
-                      z: trans.z,
-                      y: trans.y,
-                      rotateY: trans.rotateY,
-                      boxShadow: trans.shadowString,
+                      boxShadow: cardShadow,
                       transformStyle: "preserve-3d",
                       willChange: "flex, transform",
                     }}

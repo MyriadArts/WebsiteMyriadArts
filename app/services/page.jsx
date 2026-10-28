@@ -12,82 +12,6 @@ import EventsService from '../../components/services/EventsService';
 import MusicService from '../../components/services/MusicService';
 
 
-// Framer Motion Variants
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.15,
-      delayChildren: 0.1
-    }
-  }
-};
-
-const splitRevealVariants = {
-  hidden: {
-    clipPath: "inset(0% 50% 0% 50%)",
-    opacity: 0,
-    scale: 1.1
-  },
-  visible: {
-    clipPath: "inset(0% 0% 0% 0%)",
-    opacity: 1,
-    scale: 1,
-    transition: {
-      duration: 1.6,
-      ease: [0.16, 1, 0.3, 1]
-    }
-  }
-};
-
-const textVariants = {
-  hidden: {
-    opacity: 0,
-    y: 80,
-    filter: "blur(10px)"
-  },
-  visible: {
-    opacity: 1,
-    y: 0,
-    filter: "blur(0px)",
-    transition: {
-      duration: 1.2,
-      ease: [0.16, 1, 0.3, 1]
-    }
-  }
-};
-
-const cardVariants = {
-  hidden: {
-    opacity: 0,
-    y: 100,
-    scale: 0.9,
-    rotateX: 10
-  },
-  visible: {
-    opacity: 1,
-    y: 0,
-    scale: 1,
-    rotateX: 0,
-    transition: {
-      duration: 1.2,
-      ease: [0.16, 1, 0.3, 1]
-    }
-  }
-};
-
-const floatingVariants = {
-  visible: {
-    y: [0, -20, 0],
-    transition: {
-      duration: 4,
-      ease: "easeInOut",
-      repeat: Infinity
-    }
-  }
-};
-
 const sections = [
   {
     id: "performances",
@@ -124,13 +48,9 @@ export default function ServicesPage() {
   const [animationPhase, setAnimationPhase] = useState("grid"); // "grid", "pushing", "expanding", "detail", "collapsing"
   const [activeSection, setActiveSection] = useState(null);
   const [isMobile, setIsMobile] = useState(false);
-  const [isTransitioning, setIsTransitioning] = useState(false);
 
   const containerRef = useRef(null);
   const detailScrollRef = useRef(null);
-  const scrollDebounceRef = useRef(null);
-  const scrollResistanceRef = useRef(0);
-  const cardRefs = useRef([]);
   const pushTimeoutRef = useRef(null);
   const detailTimeoutRef = useRef(null);
 
@@ -168,19 +88,6 @@ export default function ServicesPage() {
     }
   }, []);
 
-  const handleScrollEdge = (direction) => {
-    // Auto scroll to next section on scroll edge disabled as requested
-    return;
-  };
-
-  const handleWheel = (e) => {
-    // Auto scroll disabled; allow standard native scrolling
-    scrollResistanceRef.current = 0;
-  };
-
-  const handleScroll = (e) => {
-    scrollResistanceRef.current = 0;
-  };
 
   const handleSelectService = (id) => {
     clearTimeouts();
@@ -388,8 +295,6 @@ export default function ServicesPage() {
                   visible: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 80, damping: 15 } }
                 }}
                 ref={isSelected && isDetail ? detailScrollRef : undefined}
-                onScroll={isSelected && isDetail ? handleScroll : undefined}
-                onWheel={isSelected && isDetail ? handleWheel : undefined}
                 onClick={() => {
                   // Compressed cards remain clickable to navigate directly
                   if (isSelected && (isExpanding || isDetail)) return;
@@ -525,7 +430,7 @@ export default function ServicesPage() {
                 {/* Scrollable Editorial Content & Details */}
                 {isSelected && isDetail && (
                   <div
-                    className={`w-full flex flex-col items-center relative z-20 select-text transition-opacity duration-500 ease-in-out ${isTransitioning ? 'opacity-0' : 'opacity-100'}`}
+                    className="w-full flex flex-col items-center relative z-20 select-text transition-opacity duration-500 ease-in-out opacity-100"
                   >
                     {/* Opened Card Header Section (Top Aligned) */}
                     <div className="w-full pt-20 md:pt-24 px-4 sm:px-8 md:px-20 pb-4 relative select-none max-w-max-width mx-auto">

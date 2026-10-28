@@ -3,7 +3,6 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import SplashScreen from "../components/shared/SplashScreen";
-import GlobalBackground from "../components/shared/GlobalBackground";
 import HeroSection from "../components/home/HeroSection";
 import MissionSection from "../components/home/MissionSection";
 import CategorySection from "../components/home/CategorySection";
@@ -45,7 +44,6 @@ export default function HomePage() {
         animate={{ opacity: showSplash ? 0 : 1 }}
         transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
       >
-        <GlobalBackground />
         <div className="relative w-full z-0">
           <HeroSection />
           <MissionSection />

@@ -77,13 +77,6 @@ export default function EventDescriptionSection() {
             {/* ── Left: Text Panel ── */}
             <div className="flex-1 p-5 sm:p-6 md:p-8 lg:p-9 flex flex-col justify-center">
 
-              <motion.span
-                className={`font-sans text-[#c1121f] text-[10px] font-bold tracking-[0.38em] uppercase mb-2 block`}
-                initial={{ opacity: 0, x: -20 }}
-                animate={isContentInView ? { opacity: 1, x: 0 } : {}}
-                transition={{ duration: 0.6, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-              >
-              </motion.span>
 
               <motion.h3
                 className="type-heading-xl text-white mb-3 sm:mb-4"
