@@ -1,5 +1,6 @@
 import "./globals.css";
 import { Inter } from "next/font/google";
+import Script from "next/script";
 import CustomCursor from "../components/ui/CustomCursor";
 import Navbar from "../components/shared/Navbar";
 import GlobalBackground from "../components/shared/GlobalBackground";
@@ -30,8 +31,16 @@ export default function RootLayout({ children }) {
         <link rel="preconnect" href="https://media.myriadarts.in" crossOrigin="anonymous" />
 
         <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet" />
+        <link rel="stylesheet" href="https://unpkg.com/lenis@1.3.27/dist/lenis.css" />
       </head>
       <body className="bg-[#050505] text-white font-sans relative isolate min-h-screen">
+        <Script
+          src="https://unpkg.com/lenis@1.3.27/dist/lenis.min.js"
+          strategy="beforeInteractive"
+        />
+        <Script id="lenis-init" strategy="afterInteractive">
+          {`window.lenis = new Lenis({ autoRaf: true, autoToggle: true, anchors: true, allowNestedScroll: true, naiveDimensions: true, stopInertiaOnNavigate: true });`}
+        </Script>
         <GlobalBackground />
         <SmoothScrollController>
           <AOSInit />

@@ -1,12 +1,10 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 import { usePathname } from "next/navigation";
-import { ReactLenis, useLenis } from "@studio-freight/react-lenis";
 
 function RouteScrollRestoration() {
   const pathname = usePathname();
-  const lenis = useLenis();
 
   // Disable default browser scroll restoration on mount
   useEffect(() => {
@@ -14,7 +12,7 @@ function RouteScrollRestoration() {
       if ("scrollRestoration" in window.history) {
         window.history.scrollRestoration = "manual";
       }
-      
+
       // On initial page load / reload, start at top unless on media library
       if (!window.location.pathname.startsWith("/media")) {
         window.scrollTo(0, 0);
@@ -33,39 +31,31 @@ function RouteScrollRestoration() {
       document.body.scrollTop = 0;
 
       // Instant Lenis smooth scroll reset
-      if (lenis) {
-        lenis.scrollTo(0, { immediate: true, force: true });
+      if (typeof window !== "undefined" && window.lenis) {
+        window.lenis.scrollTo(0, { immediate: true, force: true });
       }
 
       // Short delay fallback for dynamic content mounts
       const timer = setTimeout(() => {
         window.scrollTo(0, 0);
-        if (lenis) {
-          lenis.scrollTo(0, { immediate: true, force: true });
+        if (typeof window !== "undefined" && window.lenis) {
+          window.lenis.scrollTo(0, { immediate: true, force: true });
         }
       }, 50);
 
       return () => clearTimeout(timer);
     }
-  }, [pathname, lenis]);
+  }, [pathname]);
 
   return null;
 }
 
 export default function SmoothScrollController({ children }) {
   return (
-    <ReactLenis
-      root
-      options={{
-        lerp: 0.08,
-        smoothWheel: true,
-        wheelMultiplier: 0.85,
-        touchMultiplier: 1,
-        syncTouch: false,
-      }}
-    >
+    <>
       <RouteScrollRestoration />
       {children}
-    </ReactLenis>
+    </>
   );
 }
+
