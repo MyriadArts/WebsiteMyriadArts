@@ -413,6 +413,19 @@ export default function AboutPage() {
                 img: "/images/team/shraddha-kadam.jpeg",
                 instagram: "https://www.instagram.com/coffee_kafi_hot_hai/"
             
+              },
+               { 
+                name: "Sayali Indulkar", 
+                role: "Core Member", 
+                img: "/images/team/sayali-indulkar.jpeg",
+            
+              },
+               { 
+                name: "Namrata Shivtarkar", 
+                role: "Core Member", 
+                img: "/images/team/namrata-shivtarkar.jpeg",
+                linkedin: "https://www.linkedin.com/in/namrata-shivtarkar/"
+            
               }
             ].map((member, idx) => (
               <div
